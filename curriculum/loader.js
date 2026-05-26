@@ -122,57 +122,63 @@ En la barra superior de nuestra plataforma verás dos modos que puedes alternar 
 - Escríbelo en tu VS Code real, compruébalo localmente en tu navegador y, cuando funcione, copia y pega el código aquí en el editor de la plataforma para validarlo y guardar tu progreso.
 `;// Agregar todos los retos de los módulos creados
 const PHP_CHALLENGES = [
-    ...MODULO1_CHALLENGES,
-    ...MODULO2_CHALLENGES,
-    ...MODULO3_CHALLENGES,
-    ...MODULO4_CHALLENGES,
-    ...MODULO5_SEGURIDAD,
-    ...MODULO6_DB,
-    ...MODULO7_LARAVEL,
-    ...MODULO8_ELOQUENT
+    ...MODULO1_PRIMEROS_PASOS,
+    ...MODULO2_VARIABLES,
+    ...MODULO3_LOGICA,
+    ...MODULO4_BUCLES_ARRAYS,
+    ...MODULO5_FUNCIONES,
+    ...MODULO6_INTERACCION,
+    ...MODULO7_ESTADO,
+    ...MODULO8_DB,
+    ...MODULO9_LARAVEL_BRIDGE
 ];
 
 // Opcional: Si queremos mantener una estructura expandida de guías de inicio por módulo
 const PHP_MODULES_METADATA = [
     {
         id: 1,
-        title: "Módulo 1: Sintaxis y Tipado Avanzado",
-        challengesCount: MODULO1_CHALLENGES.length
+        title: "Nivel 1: Primeros Pasos y Sintaxis",
+        challengesCount: MODULO1_PRIMEROS_PASOS.length
     },
     {
         id: 2,
-        title: "Módulo 2: Programación Orientada a Objetos",
-        challengesCount: MODULO2_CHALLENGES.length
+        title: "Nivel 2: Variables y Datos",
+        challengesCount: MODULO2_VARIABLES.length
     },
     {
         id: 3,
-        title: "Módulo 3: Colecciones y Manipulación de Datos",
-        challengesCount: MODULO3_CHALLENGES.length
+        title: "Nivel 3: Lógica y Toma de Decisiones",
+        challengesCount: MODULO3_LOGICA.length
     },
     {
         id: 4,
-        title: "Módulo 4: Excepciones y Robustez",
-        challengesCount: MODULO4_CHALLENGES.length
+        title: "Nivel 4: Bucles y Arrays",
+        challengesCount: MODULO4_BUCLES_ARRAYS.length
     },
     {
         id: 5,
-        title: "Módulo 5: Seguridad y Sanitización",
-        challengesCount: MODULO5_SEGURIDAD.length
+        title: "Nivel 5: Modularidad y Funciones",
+        challengesCount: MODULO5_FUNCIONES.length
     },
     {
         id: 6,
-        title: "Módulo 6: Bases de Datos (SQL/PDO)",
-        challengesCount: MODULO6_DB.length
+        title: "Nivel 6: Interacción con el Usuario",
+        challengesCount: MODULO6_INTERACCION.length
     },
     {
         id: 7,
-        title: "Módulo 7: Framework Laravel (Backend)",
-        challengesCount: MODULO7_LARAVEL.length
+        title: "Nivel 7: Estado y Persistencia",
+        challengesCount: MODULO7_ESTADO.length
     },
     {
         id: 8,
-        title: "Módulo 8: Eloquent ORM y Relaciones",
-        challengesCount: MODULO8_ELOQUENT.length
+        title: "Nivel 8: Bases de Datos",
+        challengesCount: MODULO8_DB.length
+    },
+    {
+        id: 9,
+        title: "Nivel 9: El Puente Hacia Laravel",
+        challengesCount: MODULO9_LARAVEL_BRIDGE.length
     }
 ];
 
