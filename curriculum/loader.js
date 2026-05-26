@@ -52,6 +52,14 @@ Una vez instalado **Laravel Herd**, este crea automáticamente una carpeta espec
 3. ¡Listo! Ya puedes crear archivos dentro de ella (haciendo clic derecho > Nuevo Archivo > ej. \`m1_01_strict.php\`).
 4. Para ver tu archivo funcionando en vivo en tu navegador, solo debes abrir tu navegador web preferido e ingresar a la URL local: \`http://phpcamp.test/m1_01_strict.php\`. ¡Herd hace la magia de conectar tu archivo con la web local de forma automática!
 
+> [!NOTE]
+> **¿Te sale el error "No se puede acceder a esta página" (NXDOMAIN)?**
+> 1. **Asegúrate de que Laravel Herd esté abierto:** Abre el menú de inicio de Windows, busca "Laravel Herd" y ejecútalo. Debe aparecer el ícono del elefante 🐘 en la barra de tareas (junto al reloj) con los servicios en verde (Nginx, PHP y DNS encendidos).
+> 2. **Solución rápida en Windows:** Si sigue sin cargar debido a un antivirus o VPN que bloquea el DNS local, abre **PowerShell** en tu PC como **Administrador** y ejecuta el siguiente comando para forzar la conexión:
+>    \`\`\`powershell
+>    Add-Content C:\\Windows\\System32\\drivers\\etc\\hosts "\`n127.0.0.1 phpcamp.test"
+>    \`\`\`
+
 ---
 
 ## 🚀 ¿Cómo Crear un Proyecto con Laravel desde Cero?
