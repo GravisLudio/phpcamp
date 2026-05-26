@@ -73,14 +73,29 @@ Aquí aprenderás las bases escribiendo archivos PHP sencillos, sin frameworks.
 A partir del **Módulo 7**, ya no utilizaremos archivos PHP sueltos. Laravel es un framework profesional que requiere de su propia estructura y cientos de carpetas preconfiguradas.
 
 1. **Crea tu Proyecto Laravel real:**
-   - Abre la terminal de tu PC (PowerShell en Windows o Terminal en Mac).
-   - Entra a tu carpeta Herd escribiendo: \`cd %USERPROFILE%\\Herd\` (o \`cd ~/Herd\` en Mac) y presiona Enter.
-   - Ejecuta el comando para descargar Laravel:
+   - **Abre la terminal de tu PC:** En Windows, presiona la tecla Windows, escribe **PowerShell** y presiona Enter. En Mac, abre la aplicación **Terminal**.
+   - **Entra a tu carpeta Herd:** Escribe el comando correspondiente en tu terminal y presiona Enter:
+     - **Si estás en Windows PowerShell (Recomendado):**
+       \`\`\`powershell
+       cd ~\\Herd
+       \`\`\`
+     - **Si estás en Windows CMD (Símbolo del sistema):**
+       \`\`\`cmd
+       cd %USERPROFILE%\\Herd
+       \`\`\`
+     - **Si estás en macOS:**
+       \`\`\`bash
+       cd ~/Herd
+       \`\`\`
+   - **Ejecuta el comando para descargar Laravel:**
+     Escribe el siguiente comando y presiona Enter para que cree tu proyecto automáticamente:
      \`\`\`bash
      composer create-project laravel/laravel curso-laravel
      \`\`\`
      *(Esto creará de forma automática una carpeta llamada \`curso-laravel\` dentro de Herd).*
-2. **Abre el proyecto en tu editor:** En VS Code, ve a **Archivo > Abrir Carpeta...** y selecciona la carpeta recién creada: \`C:\\Users\\TU_USUARIO\\Herd\\curso-laravel\\\`.
+2. **Abre el proyecto en tu editor:** En VS Code, ve a **Archivo > Abrir Carpeta...** y selecciona la carpeta recién creada:
+   - **En Windows:** \`C:\\Users\\TU_USUARIO\\Herd\\curso-laravel\\\` (cambiando \`TU_USUARIO\` por tu nombre de usuario real de Windows).
+   - **En macOS:** \`/Users/TU_USUARIO/Herd/curso-laravel/\` o \`~/Herd/curso-laravel/\`.
 3. **Trabaja con los archivos de Laravel:** Ahora, los retos locales del curso te pedirán editar archivos internos del framework (por ejemplo, el enrutador en \`routes/web.php\` o el modelo en \`app/Models/Blog.php\`).
 4. **Míralo en vivo:** Gracias a la regla de oro de Herd, ingresa en tu navegador a: \`http://curso-laravel.test\`. ¡Verás la página de bienvenida de tu aplicación Laravel real ejecutándose!
 
