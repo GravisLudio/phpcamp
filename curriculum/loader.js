@@ -25,7 +25,15 @@ Si nunca has programado en PHP, ¡no te preocupes! Aquí tienes los conceptos b�
 Para programar en tu propia computadora como un profesional, necesitamos instalar tres herramientas que se configuran solas con un solo clic:
 
 1. **Instalar Laravel Herd (Tu motor PHP y Servidor):** Ve a [herd.laravel.com](https://herd.laravel.com) y descarga el instalador. Instala automáticamente **PHP**, **Composer** (gestor de dependencias) y **Nginx** (servidor web) en segundos.
-2. **Instalar VS Code (Tu Editor de Código):** Descarga **Visual Studio Code** en [code.visualstudio.com](https://code.visualstudio.com). Instala dentro la extensión **PHP Intelephense** para autocompletado inteligente.
+2. **Instalar VS Code (Tu Editor de Código):** Descarga **Visual Studio Code** en [code.visualstudio.com](https://code.visualstudio.com). Para tener una experiencia de desarrollo profesional y fluida, te recomendamos abrir VS Code e instalar las siguientes extensiones desde el panel izquierdo (Ctrl+Shift+X):
+   - **Para PHP y Laravel:**
+     - **PHP Intelephense:** *(Imprescindible)* Proporciona autocompletado inteligente, detección de errores en vivo y navegación de código.
+     - **Laravel Extension Pack:** Un paquete que incluye herramientas integradas para Artisan, Blade y autocompletado extra de Laravel.
+     - **Laravel Blade Snippets:** Para coloreado de sintaxis y atajos rápidos en plantillas Blade de Laravel.
+   - **Para HTML y Diseño Web:**
+     - **Auto Rename Tag:** Renombra de forma automática la etiqueta de cierre HTML cuando modificas la de apertura.
+     - **Live Server:** Para lanzar un servidor web local con recarga en vivo de tus archivos HTML/CSS/JS con un clic.
+     - **Prettier - Code Formatter:** Mantiene tu código HTML, CSS y Javascript perfectamente ordenado y formateado al guardar.
 3. **Instalar Dbngin (Tu Base de Datos):** Descarga en [dbngin.com](https://dbngin.com) para crear y encender bases de datos locales (MySQL/PostgreSQL) con un clic.
 
 ---

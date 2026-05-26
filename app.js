@@ -77,9 +77,25 @@ function init() {
 function loadChallengesSidebar() {
     sidebarChallengesList.innerHTML = '';
     
+    const isGuideVisible = guideContainer.style.display === 'block';
+
+    // Inject "Guía de Inicio" at the top of the sidebar dynamically
+    const guideLi = document.createElement('li');
+    guideLi.className = `challenge-item guide-sidebar-item ${isGuideVisible ? 'active' : ''}`;
+    guideLi.innerHTML = `
+        <div class="challenge-info">
+            <span class="challenge-level-tag" style="background: rgba(59, 130, 246, 0.2); color: #60a5fa; font-weight: 700;">INICIO</span>
+            <span class="challenge-title" style="font-weight: 600; color: #e2e8f0;">🚀 Guía de Inicio</span>
+        </div>
+    `;
+    guideLi.addEventListener('click', () => {
+        showGuide();
+    });
+    sidebarChallengesList.appendChild(guideLi);
+    
     PHP_CHALLENGES.forEach((challenge, index) => {
         const li = document.createElement('li');
-        li.className = `challenge-item ${completedChallenges[challenge.id] ? 'completed' : ''} ${index === currentChallengeIndex ? 'active' : ''}`;
+        li.className = `challenge-item ${completedChallenges[challenge.id] ? 'completed' : ''} ${index === currentChallengeIndex && !isGuideVisible ? 'active' : ''}`;
         li.dataset.index = index;
         
         li.innerHTML = `
@@ -332,12 +348,13 @@ function setupEventListeners() {
 function showGuide() {
     guideContainer.style.display = 'block';
     workspaceContainer.style.display = 'none';
-    document.querySelectorAll('.challenge-item').forEach(el => el.classList.remove('active'));
+    loadChallengesSidebar();
 }
 
 function hideGuide() {
     guideContainer.style.display = 'none';
     workspaceContainer.style.display = 'flex';
+    loadChallengesSidebar();
 }
 
 // Execute current code and validate tests
