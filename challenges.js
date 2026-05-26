@@ -20,42 +20,6 @@ Para trabajar como un desarrollador profesional, necesitas configurar tu entorno
 
 ---
 
-## ☁️ Configuración de tu Base de Datos en Supabase (PostgreSQL)
-
-Como decidimos guardar tu progreso globalmente en **Supabase**, cada vez que completes un reto tu avance se guardará en una base de datos PostgreSQL real. 
-
-### Para configurar tu proyecto en Supabase:
-1. Regístrate gratis en [supabase.com](https://supabase.com) y crea un nuevo proyecto (ej. "PHPCamp").
-2. En el menú de la izquierda de Supabase, entra al **SQL Editor** y haz clic en **New query**.
-3. Pega el siguiente código SQL y presiona **Run** para crear la tabla de progreso:
-
-\`\`\`sql
--- Crear tabla para guardar el progreso
-create table user_progress (
-  user_id uuid references auth.users not null primary key,
-  completed_challenges jsonb default '{}'::jsonb,
-  updated_at timestamp with time zone default timezone('utc'::text, now()) not null
-);
-
--- Habilitar Row Level Security (RLS) por seguridad
-alter table user_progress enable row level security;
-
--- Políticas para que los usuarios solo lean/escriban su propio progreso
-create policy "Los usuarios pueden leer su propio progreso"
-  on user_progress for select
-  using (auth.uid() = user_id);
-
-create policy "Los usuarios pueden insertar su propio progreso"
-  on user_progress for insert
-  with check (auth.uid() = user_id);
-
-create policy "Los usuarios pueden actualizar su propio progreso"
-  on user_progress for update
-  using (auth.uid() = user_id);
-\`\`\`
-
----
-
 ## 🔄 Elige tu Método de Trabajo
 
 En la barra superior de PHPCamp verás dos modos que puedes alternar en cualquier momento:
