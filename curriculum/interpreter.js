@@ -224,6 +224,23 @@ function evalPHP(phpCode) {
             } catch (e) {
                 return null;
             }
+        },
+
+        // --- SUPERGLOBALS Y AUXILIARES DE ESTADO ---
+        '$_GET': {},
+        '$_POST': {},
+        '$_SESSION': {},
+        '$_COOKIE': {},
+        session_start: function() { return true; },
+        session_destroy: function() {
+            for (let k in context['$_SESSION']) {
+                delete context['$_SESSION'][k];
+            }
+            return true;
+        },
+        setcookie: function(name, value) {
+            context['$_COOKIE'][name] = value;
+            return true;
         }
     };
 
@@ -232,6 +249,10 @@ function evalPHP(phpCode) {
 
     try {
         let jsCode = phpCode;
+
+        // Transpilar unset() de PHP a delete de JavaScript
+        jsCode = jsCode.replace(/unset\s*\(\s*([^)]+)\s*\)\s*;/g, "delete $1;");
+
 
         // 1. EXTRAER Y COMPILAR TRAITS CON SOPORTE DE LLAVES ANIDADAS (Módulo 2)
         // PHP: trait TraitName { ... }
@@ -277,6 +298,7 @@ function evalPHP(phpCode) {
 
         // 4. CONVERTIR ACCESO A MIEMBROS DE CLASE (->) EN PUNTO (.)
         jsCode = jsCode.replace(/->/g, ".");
+        jsCode = jsCode.replace(/\$this\./g, "this.");
 
         // 5. CONVERTIR OPERADOR DE MIEMBROS ESTÁTICOS (::) EN PUNTO (.)
         // Excluimos self:: y parent::
