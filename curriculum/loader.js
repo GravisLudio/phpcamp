@@ -34,7 +34,7 @@ Para programar en tu propia computadora como un profesional, necesitamos instala
 
 Una vez instalado **Laravel Herd**, se crea una carpeta especial en tu sistema llamada **Herd**:
 - **En Windows:** La ruta es \`C:\\Users\\TU_USUARIO\\Herd\\\` (donde TU_USUARIO es tu usuario de Windows).
-- **En macOS:** La ruta es \`/Users/TU_USUARIO/Herd/\` o \`~/Herd/` o \`~/Herd/\`.
+- **En macOS:** La ruta es \`/Users/TU_USUARIO/Herd/\` o \`~/Herd/\`.
 
 **¿Cómo funciona la magia de Herd?**
 Cualquier subcarpeta que crees dentro de la carpeta \`Herd\` se convertirá automáticamente en un sitio web local con el sufijo \`.test\`:
@@ -65,7 +65,7 @@ Aquí aprenderás las bases escribiendo archivos PHP sencillos, sin frameworks.
 >      \`\`\`powershell
 >      Add-Content C:\\Windows\\System32\\drivers\\etc\\hosts "\\n127.0.0.1 phpcamp.test"
 >      \`\`\`
->    - *(Nota: Si decidiste llamar a tu carpeta local de otra forma en el paso anterior, por ejemplo `mi-proyecto`, simplemente cambia `phpcamp.test` en el comando por `mi-proyecto.test`)*
+>    - *(Nota: Si decidiste llamar a tu carpeta local de otra forma en el paso anterior, por ejemplo \`mi-proyecto\`, simplemente cambia \`phpcamp.test\` en el comando por \`mi-proyecto.test\`)*
 
 ---
 
