@@ -38,7 +38,12 @@ En la barra superior de PHPCamp verás dos modos que puedes alternar en cualquie
 const PHP_CHALLENGES = [
     ...MODULO1_CHALLENGES,
     ...MODULO2_CHALLENGES,
-    ...MODULO3_CHALLENGES
+    ...MODULO3_CHALLENGES,
+    ...MODULO4_CHALLENGES,
+    ...MODULO5_SEGURIDAD,
+    ...MODULO6_DB,
+    ...MODULO7_LARAVEL,
+    ...MODULO8_ELOQUENT
 ];
 
 // Opcional: Si queremos mantener una estructura expandida de guías de inicio por módulo
@@ -57,6 +62,31 @@ const PHP_MODULES_METADATA = [
         id: 3,
         title: "Módulo 3: Colecciones y Manipulación de Datos",
         challengesCount: MODULO3_CHALLENGES.length
+    },
+    {
+        id: 4,
+        title: "Módulo 4: Excepciones y Robustez",
+        challengesCount: MODULO4_CHALLENGES.length
+    },
+    {
+        id: 5,
+        title: "Módulo 5: Seguridad y Sanitización",
+        challengesCount: MODULO5_SEGURIDAD.length
+    },
+    {
+        id: 6,
+        title: "Módulo 6: Bases de Datos (SQL/PDO)",
+        challengesCount: MODULO6_DB.length
+    },
+    {
+        id: 7,
+        title: "Módulo 7: Framework Laravel (Backend)",
+        challengesCount: MODULO7_LARAVEL.length
+    },
+    {
+        id: 8,
+        title: "Módulo 8: Eloquent ORM y Relaciones",
+        challengesCount: MODULO8_ELOQUENT.length
     }
 ];
 
