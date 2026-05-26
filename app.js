@@ -119,36 +119,117 @@ function loadChallengesSidebar() {
     });
 }
 
-// Helper to convert basic Markdown to safe HTML with translation protection and HTML escaping inside code
+// Helper to convert basic Markdown to safe HTML with translation protection, HTML escaping inside code, and recursive blockquotes/alerts
 function parseMarkdown(text) {
     if (!text) return "";
-    let html = text;
     
-    // 1. Multi-line code blocks with HTML escaping and translate="no" class="notranslate"
+    // Normalize newlines
+    let html = text.replace(/\r\n/g, '\n');
+    const placeholders = [];
+    
+    // 1. Extract multi-line code blocks into placeholders to protect them
     html = html.replace(/```(?:[a-zA-Z0-9]+)?\n([\s\S]*?)\n```/g, function(match, code) {
-        let escapedCode = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        return '<pre translate="no" class="notranslate"><code>' + escapedCode + '</code></pre>';
+        let escapedCode = code.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        const placeholder = `__PRE_CODE_BLOCK_${placeholders.length}__`;
+        placeholders.push({
+            placeholder: placeholder,
+            html: `<pre translate="no" class="notranslate"><code>${escapedCode}</code></pre>`
+        });
+        return placeholder;
     });
     
-    // 2. Headers
+    // 2. Extract inline code blocks into placeholders to protect them
+    html = html.replace(/`([^`]+)`/g, function(match, code) {
+        let escapedCode = code.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        const placeholder = `__INLINE_CODE_BLOCK_${placeholders.length}__`;
+        placeholders.push({
+            placeholder: placeholder,
+            html: `<code translate="no" class="notranslate">${escapedCode}</code>`
+        });
+        return placeholder;
+    });
+    
+    // 3. Parse blockquotes and alerts, then replace with placeholders to protect them
+    html = html.replace(/(?:^>.*\n?)+/gm, function(match) {
+        let innerContent = match.split('\n').map(line => {
+            if (line.startsWith('> ')) return line.substring(2);
+            if (line.startsWith('>')) return line.substring(1);
+            return line;
+        }).join('\n');
+        
+        let alertType = null;
+        let alertTitle = "";
+        let alertIcon = "";
+        
+        let trimmedInner = innerContent.trim();
+        if (trimmedInner.startsWith("[!TIP]")) {
+            alertType = "tip";
+            alertTitle = "Sugerencia";
+            alertIcon = "💡";
+            innerContent = trimmedInner.substring(6);
+        } else if (trimmedInner.startsWith("[!NOTE]")) {
+            alertType = "note";
+            alertTitle = "Nota";
+            alertIcon = "ℹ️";
+            innerContent = trimmedInner.substring(7);
+        } else if (trimmedInner.startsWith("[!IMPORTANT]")) {
+            alertType = "important";
+            alertTitle = "Importante";
+            alertIcon = "📢";
+            innerContent = trimmedInner.substring(12);
+        } else if (trimmedInner.startsWith("[!WARNING]")) {
+            alertType = "warning";
+            alertTitle = "Advertencia";
+            alertIcon = "⚠️";
+            innerContent = trimmedInner.substring(10);
+        } else if (trimmedInner.startsWith("[!CAUTION]")) {
+            alertType = "caution";
+            alertTitle = "Cuidado";
+            alertIcon = "🛑";
+            innerContent = trimmedInner.substring(10);
+        }
+        
+        let parsedInner = parseMarkdown(innerContent);
+        let alertHtml = "";
+        if (alertType) {
+            alertHtml = `<div class="markdown-alert markdown-alert-${alertType}"><div class="markdown-alert-title">${alertIcon} ${alertTitle}</div>${parsedInner}</div>`;
+        } else {
+            alertHtml = `<blockquote>${parsedInner}</blockquote>`;
+        }
+        
+        const placeholder = `__BLOCKQUOTE_BLOCK_${placeholders.length}__`;
+        placeholders.push({
+            placeholder: placeholder,
+            html: alertHtml
+        });
+        return placeholder;
+    });
+    
+    // 4. Escape remaining raw HTML characters in the body text (comparison operators, stray tags)
+    // We replace & first, then < and > to prevent double-escaping
+    html = html.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    
+    // 5. Parse headers, bold, and list items in the safe body text
     html = html.replace(/### (.*)/g, '<h3>$1</h3>');
     html = html.replace(/## (.*)/g, '<h2>$1</h2>');
     html = html.replace(/# (.*)/g, '<h1>$1</h1>');
     
-    // 3. Bold
     html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     
-    // 4. Inline code with HTML escaping and translate="no" class="notranslate"
-    html = html.replace(/`([^`]+)`/g, function(match, code) {
-        let escapedCode = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        return '<code translate="no" class="notranslate">' + escapedCode + '</code>';
-    });
-    
-    // 5. Blockquotes
-    html = html.replace(/> (.*)/g, '<blockquote>$1</blockquote>');
-    
-    // 6. List items
     html = html.replace(/^\s*-\s+(.*)/gm, '<li>$1</li>');
+    
+    // 6. Restore all placeholders in a loop until all are fully resolved
+    let resolved = true;
+    do {
+        resolved = true;
+        for (let i = 0; i < placeholders.length; i++) {
+            if (html.includes(placeholders[i].placeholder)) {
+                // Use a functional replacement or split/join to avoid replacement pattern ($) issues
+                html = html.split(placeholders[i].placeholder).join(placeholders[i].html);
+                resolved = false;
+            }
+        }
+    } while (!resolved);
     
     return html;
 }
