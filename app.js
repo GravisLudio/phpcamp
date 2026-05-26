@@ -103,6 +103,34 @@ function loadChallengesSidebar() {
     });
 }
 
+// Helper to convert basic Markdown to safe HTML
+function parseMarkdown(text) {
+    if (!text) return "";
+    let html = text;
+    
+    // 1. Multi-line code blocks (e.g. ```sql ... ``` or ```php ... ```)
+    html = html.replace(/```(?:[a-zA-Z0-9]+)?\n([\s\S]*?)\n```/g, '<pre><code>$1</code></pre>');
+    
+    // 2. Headers
+    html = html.replace(/### (.*)/g, '<h3>$1</h3>');
+    html = html.replace(/## (.*)/g, '<h2>$1</h2>');
+    html = html.replace(/# (.*)/g, '<h1>$1</h1>');
+    
+    // 3. Bold
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    
+    // 4. Inline code
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    
+    // 5. Blockquotes
+    html = html.replace(/> (.*)/g, '<blockquote>$1</blockquote>');
+    
+    // 6. List items
+    html = html.replace(/^\s*-\s+(.*)/gm, '<li>$1</li>');
+    
+    return html;
+}
+
 // Load a single challenge
 function loadChallenge(index) {
     const challenge = PHP_CHALLENGES[index];
@@ -110,17 +138,8 @@ function loadChallenge(index) {
 
     lessonTitle.textContent = challenge.title;
     
-    // Convert basic markdown tags to HTML for instant client-side rendering
-    let htmlContent = challenge.instructions
-        .replace(/### (.*)/g, '<h3>$1</h3>')
-        .replace(/## (.*)/g, '<h2>$1</h2>')
-        .replace(/# (.*)/g, '<h1>$1</h1>')
-        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-        .replace(/`([^`]+)`/g, '<code>$1</code>')
-        .replace(/> (.*)/g, '<blockquote>$1</blockquote>');
-        
-    // Format pre/code blocks
-    htmlContent = htmlContent.replace(/```php\n([\s\S]*?)\n```/g, '<pre><code>$1</code></pre>');
+    // Convert basic markdown tags to HTML
+    let htmlContent = parseMarkdown(challenge.instructions);
     
     // Local File Hint Card
     let localHint = '';
@@ -468,13 +487,7 @@ async function saveUserProgress() {
 // Start application safely supporting DOM race conditions
 function startApp() {
     // Inject Guide text
-    let guideHtml = INITIAL_GUIDE
-        .replace(/### (.*)/g, '<h3>$1</h3>')
-        .replace(/## (.*)/g, '<h2>$1</h2>')
-        .replace(/# (.*)/g, '<h1>$1</h1>')
-        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-        .replace(/`([^`]+)`/g, '<code>$1</code>')
-        .replace(/- (.*)/g, '<li>$1</li>')
+    let guideHtml = parseMarkdown(INITIAL_GUIDE)
         .replace(/📁 (.*)/g, '<h4>📁 $1</h4>')
         .replace(/🛠️ (.*)/g, '<h4>🛠️ $1</h4>')
         .replace(/🔄 (.*)/g, '<h4>🔄 $1</h4>')
