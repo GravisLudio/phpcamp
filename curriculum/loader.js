@@ -37,7 +37,8 @@ En la barra superior de PHPCamp verás dos modos que puedes alternar en cualquie
 // Agregar todos los retos de los módulos creados
 const PHP_CHALLENGES = [
     ...MODULO1_CHALLENGES,
-    ...MODULO2_CHALLENGES
+    ...MODULO2_CHALLENGES,
+    ...MODULO3_CHALLENGES
 ];
 
 // Opcional: Si queremos mantener una estructura expandida de guías de inicio por módulo
@@ -51,6 +52,11 @@ const PHP_MODULES_METADATA = [
         id: 2,
         title: "Módulo 2: Programación Orientada a Objetos",
         challengesCount: MODULO2_CHALLENGES.length
+    },
+    {
+        id: 3,
+        title: "Módulo 3: Colecciones y Manipulación de Datos",
+        challengesCount: MODULO3_CHALLENGES.length
     }
 ];
 
