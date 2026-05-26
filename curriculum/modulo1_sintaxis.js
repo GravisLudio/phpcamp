@@ -6,18 +6,46 @@ const MODULO1_CHALLENGES = [
     title: "1. Tipado Estricto (strict_types)",
     localPath: "Herd/phpcamp/m1_01_strict.php",
     instructions: `
-### Tipado Estricto en PHP (strict_types)
-Por defecto, PHP intenta convertir tipos de datos automáticamente (coerción de tipos). En desarrollo profesional y Laravel, es estándar habilitar el **tipado estricto** en la primera línea de cada archivo para evitar comportamientos inesperados:
+### 🐘 Tipado Estricto (strict_types) y Tu Primera Función
+
+¡Bienvenido a tu primer reto de PHPCamp! Aquí aprenderás los fundamentos para escribir código seguro y profesional desde el primer momento.
+
+#### 1. ¿Qué es el Tipado Estricto?
+Por defecto, PHP es muy flexible y trata de "adivinar" los tipos de datos. Si una función espera un número entero (ej. \`5\`) pero le pasas el texto \`"5"\`, PHP lo convertirá automáticamente de forma silenciosa. Esto puede provocar errores graves.
+Para evitarlo, los desarrolladores profesionales activamos el **tipado estricto** en la primera línea de cada archivo escribiendo esto exactamente:
 \`\`\`php
-<?php
 declare(strict_types=1);
 \`\`\`
-Si declaras una función que acepta un entero y pasas un flotante o un string, PHP arrojará un \`TypeError\` de inmediato.
+*(Esto obliga a PHP a exigir que los tipos de datos coincidan exactamente, arrojando un error si se pasa un dato incorrecto).*
 
-#### Instrucciones:
-1. Declara la directiva de tipado estricto en la primera línea del script.
-2. Define una función llamada \`multiplicar\` que acepte dos parámetros de tipo flotante (\`float $a, float $b\`) y retorne un flotante (\`float\`).
-3. Retorna la multiplicación de ambos números.
+#### 2. ¿Cómo se define una Función en PHP?
+Una función es un bloque de código reutilizable al que le podemos enviar datos (parámetros) para que realice una tarea y nos devuelva un resultado. Se declara usando la palabra clave \`function\` y abriendo llaves:
+\`\`\`php
+function saludar($nombre) {
+    return "Hola " . $nombre;
+}
+\`\`\`
+
+#### 3. Tipado de Parámetros y Retorno (PHP 8+)
+Para indicarle a PHP de qué tipo deben ser los parámetros que recibe la función y qué tipo de dato va a devolver (retornar), usamos la siguiente sintaxis:
+- **Tipar parámetros:** Escribimos el tipo (como \`int\` para enteros, \`float\` para decimales, \`string\` para texto) antes del nombre de la variable.
+- **Tipar el retorno:** Escribimos dos puntos (\`:\`) y el tipo de dato devuelto justo después del paréntesis de los parámetros, antes de abrir las llaves.
+
+**Ejemplo de una función que suma dos enteros y devuelve un entero:**
+\`\`\`php
+function sumar(int $numero1, int $numero2): int {
+    return $numero1 + $numero2;
+}
+\`\`\`
+
+---
+
+#### 🚀 Instrucciones para Resolver este Reto:
+1. Declara la directiva de tipado estricto en la primera línea de tu script (justo debajo de \`<?php\`).
+2. Define una función llamada \`multiplicar\`.
+3. Haz que la función acepte dos parámetros de tipo flotante o decimal: \`float $a\` y \`float $b\`.
+4. Declara que la función debe retornar un valor flotante escribiendo \`: float\` antes de abrir la llave \`{\`.
+5. Dentro de la función, multiplica los dos parámetros usando el operador asterisco (\`*\`) y devuélvelo usando la palabra clave \`return\`.
     `,
     initialCode: `<?php
 // 1. Activa strict_types aquí
