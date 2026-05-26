@@ -3,16 +3,16 @@
 
 const INITIAL_GUIDE = `# ¡Bienvenido a PHPCamp! 🚀
 
-Esta plataforma interactiva está diseñada para que tú y tus compañeros dominen **PHP, Bases de Datos y Laravel** en tiempo récord, llevándolos de la mano **desde nivel 0 absoluto** hasta conceptos intermedios y avanzados del desarrollo web profesional.
+Esta plataforma interactiva está diseñada para que tú y tus compañeros dominen **PHP, Bases de Datos y Laravel** en tiempo récord, llevándolos de la mano **desde nivel 0 absoluto** hasta conceptos intermedios del desarrollo web profesional.
 
 ---
 
 ## 🐘 ¿Qué es PHP y Cómo Funcionan sus Archivos?
 
-Si nunca has programado en PHP, ¡no te preocupes! Aquí tienes lo básico que debes saber:
-- **¿Qué es?** PHP es el lenguaje que ejecuta la lógica detrás del 78% de las páginas web del mundo (incluyendo Facebook y WordPress).
-- **Archivos PHP:** Todos los archivos de código PHP terminan en la extensión \`.php\` (por ejemplo: \`index.php\`).
-- **La etiqueta de apertura:** Para que la computadora sepa que va a leer código PHP, el archivo **debe empezar obligatoriamente** en su primera línea con:
+Si nunca has programado en PHP, ¡no te preocupes! Aquí tienes los conceptos básicos:
+- **¿Qué es PHP?** Es el lenguaje que ejecuta la lógica detrás del 78% de las páginas web del mundo (incluyendo Facebook y WordPress).
+- **Archivos PHP:** Todos los archivos de código PHP terminan en la extensión \`.php\` (por ejemplo: \`index.php\` o \`m1_01_strict.php\`).
+- **La etiqueta de apertura:** Para que el servidor sepa que debe ejecutar código PHP, tu archivo **debe empezar obligatoriamente** en la primera línea con:
   \`\`\`php
   <?php
   \`\`\`
@@ -22,61 +22,63 @@ Si nunca has programado en PHP, ¡no te preocupes! Aquí tienes lo básico que d
 
 ## 🛠️ Configuración de tu Entorno de Desarrollo Local
 
-Para trabajar como un programador profesional en tu propia computadora, instalaremos tres herramientas líderes de la industria que se configuran con un solo clic:
+Para programar en tu propia computadora como un profesional, necesitamos instalar tres herramientas que se configuran solas con un solo clic:
 
-### 1. Instalar Laravel Herd (Tu motor PHP)
-**Laravel Herd** es un entorno de desarrollo PHP ultrarrápido y sin configuraciones complejas.
-- **Descarga:** Ve a [herd.laravel.com](https://herd.laravel.com) y descarga el instalador.
-- **¿Qué hace?** Instala automáticamente **PHP**, **Composer** (el gestor de paquetes de PHP) y **Nginx** (el servidor web local) en tu computadora en segundos. No necesitas configurar nada de forma manual.
-
-### 2. Instalar VS Code (Tu Editor de Código)
-Necesitas un editor de texto inteligente para escribir tu código.
-- **Descarga:** Ve a [code.visualstudio.com](https://code.visualstudio.com) y descarga **Visual Studio Code**.
-- **Recomendación:** Instala la extensión **PHP Intelephense** dentro de VS Code para que te autocomplete el código de manera inteligente.
-
-### 3. Instalar Dbngin (Tu Gestor de Bases de Datos)
-- **Descarga:** Ve a [dbngin.com](https://dbngin.com).
-- **¿Qué hace?** Te permite crear y encender bases de datos locales (como PostgreSQL o MySQL) con un solo clic de forma visual.
+1. **Instalar Laravel Herd (Tu motor PHP y Servidor):** Ve a [herd.laravel.com](https://herd.laravel.com) y descarga el instalador. Instala automáticamente **PHP**, **Composer** (gestor de dependencias) y **Nginx** (servidor web) en segundos.
+2. **Instalar VS Code (Tu Editor de Código):** Descarga **Visual Studio Code** en [code.visualstudio.com](https://code.visualstudio.com). Instala dentro la extensión **PHP Intelephense** para autocompletado inteligente.
+3. **Instalar Dbngin (Tu Base de Datos):** Descarga en [dbngin.com](https://dbngin.com) para crear y encender bases de datos locales (MySQL/PostgreSQL) con un clic.
 
 ---
 
-## 📂 ¿Dónde se guardan los archivos PHP en tu PC?
+## 🔑 La Regla de Oro de Laravel Herd: "Carpeta = URL"
 
-Una vez instalado **Laravel Herd**, este crea automáticamente una carpeta especial en tu sistema llamada **Herd**.
-- **En Windows:** La ruta exacta de esta carpeta es \`C:\\Users\\TU_USUARIO\\Herd\\\` (donde TU_USUARIO es tu nombre de usuario de Windows).
-- **En macOS:** La ruta es \`/Users/TU_USUARIO/Herd/\` o simplemente \`~/Herd/\`.
+Una vez instalado **Laravel Herd**, se crea una carpeta especial en tu sistema llamada **Herd**:
+- **En Windows:** La ruta es \`C:\\Users\\TU_USUARIO\\Herd\\\` (donde TU_USUARIO es tu usuario de Windows).
+- **En macOS:** La ruta es \`/Users/TU_USUARIO/Herd/\` o \`~/Herd/` o \`~/Herd/\`.
 
-### Tu primer espacio de trabajo:
-1. Ve a esa carpeta **Herd** en tu explorador de archivos y crea una nueva subcarpeta llamada \`phpcamp\`. Tu ruta local para el curso será: \`C:\\Users\\TU_USUARIO\\Herd\\phpcamp\\\`.
-2. Abre **VS Code**, ve a **Archivo > Abrir Carpeta...** (File > Open Folder) y selecciona esa carpeta \`phpcamp\`.
-3. ¡Listo! Ya puedes crear archivos dentro de ella (haciendo clic derecho > Nuevo Archivo > ej. \`m1_01_strict.php\`).
-4. Para ver tu archivo funcionando en vivo en tu navegador, solo debes abrir tu navegador web preferido e ingresar a la URL local: \`http://phpcamp.test/m1_01_strict.php\`. ¡Herd hace la magia de conectar tu archivo con la web local de forma automática!
+**¿Cómo funciona la magia de Herd?**
+Cualquier subcarpeta que crees dentro de la carpeta \`Herd\` se convertirá automáticamente en un sitio web local con el sufijo \`.test\`:
+- Si creas una carpeta llamada \`phpcamp\`, su URL será \`http://phpcamp.test\`.
+- Si creas una carpeta llamada \`mi-proyecto\`, su URL será \`http://mi-proyecto.test\`.
+
+---
+
+## 📂 Organización del Curso: Dos Espacios de Trabajo
+
+Para que el aprendizaje tenga sentido, dividiremos tu entorno local en **dos fases** según los módulos que estés cursando:
+
+### 📍 FASE 1: PHP Puro y Fundamentos (Módulos 1 al 6)
+Aquí aprenderás las bases escribiendo archivos PHP sencillos, sin frameworks.
+
+1. **Crea la carpeta del curso:** Ve a tu directorio \`Herd\` y crea una carpeta llamada \`phpcamp\`. Tu ruta física será: \`C:\\Users\\TU_USUARIO\\Herd\\phpcamp\\\`.
+2. **Ábrela en tu editor:** Abre VS Code, ve a **Archivo > Abrir Carpeta...** y selecciona la carpeta \`phpcamp\`.
+3. **Crea tus ejercicios:** Haz clic derecho en VS Code y crea un nuevo archivo llamado, por ejemplo, \`m1_01_strict.php\`. Escribe tu código PHP y guárdalo.
+4. **Míralo en vivo:** Abre tu navegador e ingresa a: \`http://phpcamp.test/m1_01_strict.php\`. ¡Se ejecutará al instante!
 
 > [!NOTE]
 > **¿Te sale el error "No se puede acceder a esta página" (NXDOMAIN)?**
-> 1. **Asegúrate de que Laravel Herd esté abierto:** Abre el menú de inicio de Windows, busca "Laravel Herd" y ejecútalo. Debe aparecer el ícono del elefante 🐘 en la barra de tareas (junto al reloj) con los servicios en verde (Nginx, PHP y DNS encendidos).
-> 2. **Solución rápida en Windows:** Si sigue sin cargar debido a un antivirus o VPN que bloquea el DNS local, abre **PowerShell** en tu PC como **Administrador** y ejecuta el siguiente comando para forzar la conexión:
->    \`\`\`powershell
->    Add-Content C:\\Windows\\System32\\drivers\\etc\\hosts "\`n127.0.0.1 phpcamp.test"
->    \`\`\`
+> - **Paso 1:** Asegúrate de que **Laravel Herd** esté abierto. Busca "Laravel Herd" en el menú de inicio de Windows y ábrelo. Verás un elefante **🐘** junto al reloj con sus servicios en verde.
+> - **Paso 2 (Solución definitiva en Windows):** Si un antivirus o VPN bloquea el dominio local \`.test\`, abre **PowerShell** como **Administrador** en tu PC y ejecuta este comando para forzar la conexión:
+>   \`\`\`powershell
+>   Add-Content C:\\Windows\\System32\\drivers\\etc\\hosts "\\n127.0.0.1 phpcamp.test"
+>   \`\`\`
 
 ---
 
-## 🚀 ¿Cómo Crear un Proyecto con Laravel desde Cero?
+### 📍 FASE 2: Introducción a Laravel (Módulos 7 y 8)
+A partir del **Módulo 7**, ya no utilizaremos archivos PHP sueltos. Laravel es un framework profesional que requiere de su propia estructura y cientos de carpetas preconfiguradas.
 
-Laravel es el framework de PHP más popular y demandado del mundo. Crear un proyecto real es sumamente sencillo una vez que tienes Laravel Herd instalado:
-
-1. **Abre tu Terminal:** En Windows, presiona la tecla Windows, escribe \`PowerShell\` o \`Símbolo del sistema\` (Command Prompt) y ábrelo. En Mac, abre la aplicación \`Terminal\`.
-2. **Navega a tu carpeta de Herd:** Escribe el siguiente comando en la terminal y presiona Enter:
-   - **En Windows:** \`cd %USERPROFILE%\\Herd\`
-   - **En macOS:** \`cd ~/Herd\`
-3. **Crea el Proyecto Laravel:** Ejecuta el siguiente comando para que Composer descargue y cree la estructura de Laravel de forma automática:
-   \`\`\`bash
-   composer create-project laravel/laravel mi-primer-proyecto
-   \`\`\`
-   *(Esto creará una nueva carpeta llamada \`mi-primer-proyecto\` con todo lo necesario).*
-4. **Ábrelo en tu Editor:** En VS Code, ve a **Archivo > Abrir Carpeta...** y selecciona la carpeta recién creada: \`C:\\Users\\TU_USUARIO\\Herd\\mi-primer-proyecto\\\`.
-5. **¡Míralo en el Navegador!** Abre tu navegador e ingresa a \`http://mi-primer-proyecto.test\`. ¡Verás la página de bienvenida de tu aplicación Laravel real ejecutándose localmente!
+1. **Crea tu Proyecto Laravel real:**
+   - Abre la terminal de tu PC (PowerShell en Windows o Terminal en Mac).
+   - Entra a tu carpeta Herd escribiendo: \`cd %USERPROFILE%\\Herd\` (o \`cd ~/Herd\` en Mac) y presiona Enter.
+   - Ejecuta el comando para descargar Laravel:
+     \`\`\`bash
+     composer create-project laravel/laravel curso-laravel
+     \`\`\`
+     *(Esto creará de forma automática una carpeta llamada \`curso-laravel\` dentro de Herd).*
+2. **Abre el proyecto en tu editor:** En VS Code, ve a **Archivo > Abrir Carpeta...** y selecciona la carpeta recién creada: \`C:\\Users\\TU_USUARIO\\Herd\\curso-laravel\\\`.
+3. **Trabaja con los archivos de Laravel:** Ahora, los retos locales del curso te pedirán editar archivos internos del framework (por ejemplo, el enrutador en \`routes/web.php\` o el modelo en \`app/Models/Blog.php\`).
+4. **Míralo en vivo:** Gracias a la regla de oro de Herd, ingresa en tu navegador a: \`http://curso-laravel.test\`. ¡Verás la página de bienvenida de tu aplicación Laravel real ejecutándose!
 
 ---
 
@@ -85,15 +87,13 @@ Laravel es el framework de PHP más popular y demandado del mundo. Crear un proy
 En la barra superior de nuestra plataforma verás dos modos que puedes alternar cuando quieras:
 
 ### 🖥️ Modo Web Interactivo (Recomendado para aprender rápido)
-- Escribe tu código directamente en el editor web interactivo de la derecha y presiona **"Ejecutar Pruebas"**.
+- Escribe tu código directamente en el editor web de la derecha y presiona **"Ejecutar Pruebas"**.
 - El sistema compilará y ejecutará tu PHP en tiempo real y te mostrará la consola de salida y los requisitos cumplidos.
 
-### 💻 Modo Editor Local (Para trabajar en tu PC real)
+### 💻 Modo Editor Local (Para programar en tu PC real)
 - Selecciona este modo y te mostraremos la ruta física recomendada donde colocar el archivo local (ej. \`routes/web.php\` o \`app/Models/Blog.php\`).
 - Escríbelo en tu VS Code real, compruébalo localmente en tu navegador y, cuando funcione, copia y pega el código aquí en el editor de la plataforma para validarlo y guardar tu progreso.
-`;
-
-// Agregar todos los retos de los módulos creados
+`;// Agregar todos los retos de los módulos creados
 const PHP_CHALLENGES = [
     ...MODULO1_CHALLENGES,
     ...MODULO2_CHALLENGES,
