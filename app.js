@@ -7,7 +7,11 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 let supabase = null;
 if (SUPABASE_URL && SUPABASE_ANON_KEY) {
     try {
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        if (window.supabase) {
+            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        } else {
+            console.warn("Supabase CDN no está cargado. Se usará LocalStorage.");
+        }
     } catch (e) {
         console.error("Error al inicializar Supabase:", e);
     }
@@ -461,8 +465,8 @@ async function saveUserProgress() {
     }
 }
 
-// Start application
-document.addEventListener('DOMContentLoaded', () => {
+// Start application safely supporting DOM race conditions
+function startApp() {
     // Inject Guide text
     let guideHtml = INITIAL_GUIDE
         .replace(/### (.*)/g, '<h3>$1</h3>')
@@ -477,6 +481,15 @@ document.addEventListener('DOMContentLoaded', () => {
         .replace(/☁️ (.*)/g, '<h4>☁️ $1</h4>')
         .replace(/📂 (.*)/g, '<h4>📂 $1</h4>');
     
-    document.getElementById('guide-content').innerHTML = guideHtml;
+    const guideEl = document.getElementById('guide-content');
+    if (guideEl) {
+        guideEl.innerHTML = guideHtml;
+    }
     init();
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startApp);
+} else {
+    startApp();
+}
