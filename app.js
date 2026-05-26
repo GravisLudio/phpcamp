@@ -4,11 +4,11 @@
 const SUPABASE_URL = "https://ynxhmhbzwyzvfelnujaa.supabase.co"; 
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlueGhtaGJ6d3l6dmZlbG51amFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3NTQxMjYsImV4cCI6MjA5NTMzMDEyNn0.uEZ8ECKMoOCR0DSTuGLO23nlGdPNxItLKzUeaRXsafY";
 
-let supabase = null;
+let supabaseClient = null;
 if (SUPABASE_URL && SUPABASE_ANON_KEY) {
     try {
         if (window.supabase) {
-            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         } else {
             console.warn("Supabase CDN no está cargado. Se usará LocalStorage.");
         }
@@ -244,7 +244,7 @@ function setupEventListeners() {
 
     // --- AUTHENTICATION EVENTS ---
     btnOpenAuth.addEventListener('click', () => {
-        if (!supabase) {
+        if (!supabaseClient) {
             alert("⚠️ Supabase no está configurado. Abre el archivo 'app.js' e ingresa tu SUPABASE_URL y SUPABASE_ANON_KEY en la parte superior.");
             return;
         }
@@ -283,14 +283,14 @@ function setupEventListeners() {
         try {
             if (isRegisterMode) {
                 // Register
-                const { data, error } = await supabase.auth.signUp({ email, password });
+                const { data, error } = await supabaseClient.auth.signUp({ email, password });
                 if (error) throw error;
                 alert("¡Registro exitoso! Ya puedes iniciar sesión con tu cuenta.");
                 isRegisterMode = false;
                 authToggleLink.click();
             } else {
                 // Login
-                const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+                const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
                 if (error) throw error;
                 authModalOverlay.classList.remove('active');
             }
@@ -304,8 +304,8 @@ function setupEventListeners() {
     });
 
     btnLogout.addEventListener('click', async () => {
-        if (supabase) {
-            await supabase.auth.signOut();
+        if (supabaseClient) {
+            await supabaseClient.auth.signOut();
         }
     });
 }
@@ -391,14 +391,14 @@ function updateProgressHeader() {
 // --- SUPABASE DATA SYNC LOGIC ---
 
 async function checkAuthSession() {
-    if (!supabase) return;
+    if (!supabaseClient) return;
 
     // Read current user
-    const { data: { user } } = await supabase.auth.getUser();
+    const { data: { user } } = await supabaseClient.auth.getUser();
     handleUserChange(user);
 
     // Subscribe to auth state changes
-    supabase.auth.onAuthStateChange((event, session) => {
+    supabaseClient.auth.onAuthStateChange((event, session) => {
         handleUserChange(session?.user || null);
     });
 }
@@ -422,10 +422,10 @@ function handleUserChange(user) {
 }
 
 async function fetchUserProgress(userId) {
-    if (!supabase) return;
+    if (!supabaseClient) return;
     
     try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('user_progress')
             .select('completed_challenges')
             .eq('user_id', userId)
@@ -449,9 +449,9 @@ async function saveUserProgress() {
     localStorage.setItem('phpcamp_completed', JSON.stringify(completedChallenges));
     
     // Save to Supabase Cloud PostgreSQL DB if logged in
-    if (supabase && currentUser) {
+    if (supabaseClient && currentUser) {
         try {
-            const { error } = await supabase
+            const { error } = await supabaseClient
                 .from('user_progress')
                 .upsert({ 
                     user_id: currentUser.id, 
