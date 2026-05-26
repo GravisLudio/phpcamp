@@ -119,13 +119,16 @@ function loadChallengesSidebar() {
     });
 }
 
-// Helper to convert basic Markdown to safe HTML
+// Helper to convert basic Markdown to safe HTML with translation protection and HTML escaping inside code
 function parseMarkdown(text) {
     if (!text) return "";
     let html = text;
     
-    // 1. Multi-line code blocks (e.g. ```sql ... ``` or ```php ... ```)
-    html = html.replace(/```(?:[a-zA-Z0-9]+)?\n([\s\S]*?)\n```/g, '<pre><code>$1</code></pre>');
+    // 1. Multi-line code blocks with HTML escaping and translate="no" class="notranslate"
+    html = html.replace(/```(?:[a-zA-Z0-9]+)?\n([\s\S]*?)\n```/g, function(match, code) {
+        let escapedCode = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        return '<pre translate="no" class="notranslate"><code>' + escapedCode + '</code></pre>';
+    });
     
     // 2. Headers
     html = html.replace(/### (.*)/g, '<h3>$1</h3>');
@@ -135,8 +138,11 @@ function parseMarkdown(text) {
     // 3. Bold
     html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     
-    // 4. Inline code
-    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    // 4. Inline code with HTML escaping and translate="no" class="notranslate"
+    html = html.replace(/`([^`]+)`/g, function(match, code) {
+        let escapedCode = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        return '<code translate="no" class="notranslate">' + escapedCode + '</code>';
+    });
     
     // 5. Blockquotes
     html = html.replace(/> (.*)/g, '<blockquote>$1</blockquote>');

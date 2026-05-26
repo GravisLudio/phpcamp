@@ -46,6 +46,15 @@ function sumar(int $numero1, int $numero2): int {
 3. Haz que la función acepte dos parámetros de tipo flotante o decimal: \`float $a\` y \`float $b\`.
 4. Declara que la función debe retornar un valor flotante escribiendo \`: float\` antes de abrir la llave \`{\`.
 5. Dentro de la función, multiplica los dos parámetros usando el operador asterisco (\`*\`) y devuélvelo usando la palabra clave \`return\`.
+
+> [!TIP]
+> **💡 ¿Por qué mi página local \`m1_01_strict.php\` se ve en blanco en el navegador?**
+> ¡Excelente observación! En PHP, definir una función (\`function multiplicar(...)\`) simplemente le enseña al servidor cómo hacer el cálculo, pero **no produce ningún resultado visible en pantalla por sí sola**.
+> Si quieres ver el resultado impreso en tu navegador local (\`http://phpcamp.test/m1_01_strict.php\`), debes **llamar a la función usando \`echo\`** al final de tu archivo. Por ejemplo:
+> \`\`\`php
+> echo multiplicar(5.5, 4.0); // Esto imprimirá 22 en la pantalla
+> \`\`\`
+> *(Este primer reto es el único que solo te pide definir la función para validar la estructura; en los siguientes retos del curso se te pedirá explícitamente usar \`echo\` o imprimir el resultado para que veas el resultado directamente en pantalla).*
     `,
     initialCode: `<?php
 // 1. Activa strict_types aquí
