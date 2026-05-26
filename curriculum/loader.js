@@ -57,11 +57,15 @@ Aquí aprenderás las bases escribiendo archivos PHP sencillos, sin frameworks.
 
 > [!NOTE]
 > **¿Te sale el error "No se puede acceder a esta página" (NXDOMAIN)?**
-> - **Paso 1:** Asegúrate de que **Laravel Herd** esté abierto. Busca "Laravel Herd" en el menú de inicio de Windows y ábrelo. Verás un elefante **🐘** junto al reloj con sus servicios en verde.
-> - **Paso 2 (Solución definitiva en Windows):** Si un antivirus o VPN bloquea el dominio local \`.test\`, abre **PowerShell** como **Administrador** en tu PC y ejecuta este comando para forzar la conexión:
->   \`\`\`powershell
->   Add-Content C:\\Windows\\System32\\drivers\\etc\\hosts "\\n127.0.0.1 phpcamp.test"
->   \`\`\`
+> 1. **Asegúrate de tener Laravel Herd abierto:** Abre el menú de inicio de Windows, busca "Laravel Herd" y ejecútalo. Debes ver el ícono del elefante 🐘 al lado del reloj en tu barra de tareas con sus servicios en verde (Nginx, PHP y DNS encendidos). ¡Si Herd está cerrado, tu servidor local no responderá!
+> 2. **Solución definitiva para Windows (DNS bloqueado):** Si sigue sin cargar debido a un antivirus o VPN que bloquea el DNS local, puedes forzar la conexión de forma segura en tu archivo hosts:
+>    - Busca **"PowerShell"** en tu menú Inicio de Windows.
+>    - Haz **clic derecho** sobre él y selecciona **"Ejecutar como administrador"** (esto es obligatorio para evitar errores de acceso denegado).
+>    - Ejecuta el siguiente comando en la ventana azul:
+>      \`\`\`powershell
+>      Add-Content C:\\Windows\\System32\\drivers\\etc\\hosts "\\n127.0.0.1 phpcamp.test"
+>      \`\`\`
+>    - *(Nota: Si decidiste llamar a tu carpeta local de otra forma en el paso anterior, por ejemplo `mi-proyecto`, simplemente cambia `phpcamp.test` en el comando por `mi-proyecto.test`)*
 
 ---
 
