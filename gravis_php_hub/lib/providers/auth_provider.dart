@@ -23,9 +23,8 @@ class AuthNotifier extends StateNotifier<AppAuthState> {
   final _client = sb.Supabase.instance.client;
 
   AuthNotifier() : super(AppAuthState(user: sb.Supabase.instance.client.auth.currentUser)) {
-    // Escuchar activamente los cambios de estado de autenticación en tiempo real
     _client.auth.onAuthStateChange.listen((data) {
-      state = AppAuthState(user: data.user);
+      state = AppAuthState(user: data.session?.user);
     });
   }
 
