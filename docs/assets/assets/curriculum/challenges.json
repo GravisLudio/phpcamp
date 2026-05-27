@@ -1,0 +1,655 @@
+[
+  {
+    "id": "m1_hola_mundo",
+    "level": 1,
+    "levelTitle": "Nivel 1: Primeros Pasos y Sintaxis",
+    "title": "1. Hola Mundo en PHP",
+    "localPath": "Herd/phpcamp/m1_01_hola.php",
+    "instructions": "### Tu Primer \"Hola Mundo\" en PHP\n\n¡Bienvenido a PHPCamp! Vamos a empezar por lo más fundamental: mostrar texto en la pantalla.\n\n#### ¿Cómo funciona PHP?\nPHP es un lenguaje de servidor. Cuando abres un archivo `.php`, el servidor busca código dentro de las etiquetas `<?php` y `?>`. Si omites el cierre `?>` al final del archivo (lo cual es recomendado en archivos puros de PHP), el servidor asume que todo el archivo es código PHP.\n\n#### La instrucción \"echo\"\nPara que PHP envíe texto al navegador (a la pantalla), usamos la instrucción `echo` seguida de un espacio y el texto entre comillas.\n\n#### ¡No olvides el punto y coma!\nLa regla de oro de PHP es que **todas** las instrucciones deben terminar con un punto y coma (`;`). Es la forma que tiene PHP de saber que la instrucción ha terminado.\n\n```php\necho \"¡Hola Mundo!\";\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Usa la instrucción `echo` para imprimir el texto exacto: `Hola Mundo`\n2. Asegúrate de poner el punto y coma (`;`) al final de la línea.",
+    "initialCode": "<?php\n// Imprime Hola Mundo usando echo\n",
+    "tests": [
+      {
+        "description": "Debe usar la instrucción 'echo'",
+        "validateCode": "(code, output) => /echo\\s+/.test(code)"
+      },
+      {
+        "description": "Debe imprimir 'Hola Mundo'",
+        "validateCode": "(code, output) => output.trim() === \"Hola Mundo\""
+      }
+    ]
+  },
+  {
+    "id": "m1_comentarios",
+    "level": 1,
+    "levelTitle": "Nivel 1: Primeros Pasos y Sintaxis",
+    "title": "2. Comentarios en el Código",
+    "localPath": "Herd/phpcamp/m1_02_comentarios.php",
+    "instructions": "### Comentarios: Documentando tu código\n\nLos comentarios son anotaciones que el programador escribe en el archivo para explicar qué hace el código. PHP ignora completamente estas líneas al ejecutar el programa.\n\nExisten dos tipos de comentarios en PHP:\n\n1. **Comentarios de una sola línea:** Se crean usando una doble barra inclinada `//` o el símbolo de almohadilla `#`.\n2. **Comentarios multilínea:** Empiezan con `/*` y terminan con `*/`. Son ideales para explicaciones más extensas.\n\n```php\n// Este es un comentario de una sola línea\n# Este también lo es\n\n/*\n  Este es un comentario\n  de múltiples líneas\n*/\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Agrega un comentario de una línea usando `//` con cualquier texto que quieras.\n2. Agrega un comentario de bloque o multilínea usando `/* ... */`.\n3. Al final, escribe un `echo` para imprimir el texto `Comentarios listos`.",
+    "initialCode": "<?php\n// Escribe tus comentarios debajo y luego tu instrucción echo\n\n",
+    "tests": [
+      {
+        "description": "Debe incluir un comentario de una sola línea (// o #)",
+        "validateCode": "(code, output) => /(\\/\\/|#).+/.test(code)"
+      },
+      {
+        "description": "Debe incluir un comentario de bloque (/* */)",
+        "validateCode": "(code, output) => /\\/\\*[\\s\\S]*?\\*\\//.test(code)"
+      },
+      {
+        "description": "Debe imprimir 'Comentarios listos'",
+        "validateCode": "(code, output) => output.trim() === \"Comentarios listos\""
+      }
+    ]
+  },
+  {
+    "id": "m1_php_html",
+    "level": 1,
+    "levelTitle": "Nivel 1: Primeros Pasos y Sintaxis",
+    "title": "3. Mezclando PHP y HTML",
+    "localPath": "Herd/phpcamp/m1_03_php_html.php",
+    "instructions": "### PHP y HTML: La pareja perfecta\n\nUna de las grandes fortalezas de PHP es su capacidad para incrustar etiquetas HTML dentro de los archivos y generarlas de forma dinámica.\n\nCuando usas `echo` con etiquetas HTML, el navegador las interpreta y renderiza correctamente en lugar de mostrarlas como texto plano.\n\n```php\necho \"<h1>Bienvenido a mi web</h1>\";\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Usa `echo` para imprimir un título utilizando la etiqueta HTML `<h1>` que contenga el texto `PHPCamp`. (Ej: `<h1>PHPCamp</h1>`).\n2. En una nueva línea, usa `echo` para imprimir un párrafo con la etiqueta HTML `<p>` que contenga el texto `Aprendiendo PHP interactivo.`. (Ej: `<p>Aprendiendo PHP interactivo.</p>`).",
+    "initialCode": "<?php\n// Imprime el encabezado h1 y el párrafo p\n\n",
+    "tests": [
+      {
+        "description": "Debe imprimir el título h1 con 'PHPCamp'",
+        "validateCode": "(code, output) => /<h1>\\s*PHPCamp\\s*<\\/h1>/i.test(output)"
+      },
+      {
+        "description": "Debe imprimir el párrafo p con 'Aprendiendo PHP interactivo.'",
+        "validateCode": "(code, output) => /<p>\\s*Aprendiendo PHP interactivo\\.\\s*<\\/p>/i.test(output)"
+      }
+    ]
+  },
+  {
+    "id": "m2_variables_basicas",
+    "level": 2,
+    "levelTitle": "Nivel 2: Variables y Datos",
+    "title": "1. Declaración de Variables",
+    "localPath": "Herd/phpcamp/m2_01_variables.php",
+    "instructions": "### Variables: Guardando Información\n\nUna variable es como una \"caja\" en la memoria de la computadora donde puedes guardar datos para usarlos más tarde.\n\nEn PHP, todas las variables **deben comenzar con el símbolo del dólar (`$`)**, seguido de una letra o guion bajo. ¡Nunca pueden empezar por un número!\n\n```php\n$nombre = \"Juan\";\n$edad = 25;\necho $nombre; // Imprime Juan\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Crea una variable llamada `$ciudad` y asígnale el valor de texto `\"Madrid\"`.\n2. Crea una variable llamada `$poblacion` y asígnale el número entero `3000000`.\n3. Usa `echo` para imprimir el valor de la variable `$ciudad`.",
+    "initialCode": "<?php\n// Declara las variables $ciudad y $poblacion\n\n\n// Imprime $ciudad\n\n",
+    "tests": [
+      {
+        "description": "Debe declarar la variable $ciudad con 'Madrid'",
+        "validateCode": "(code, output) => code.includes(\"$ciudad\") && code.includes(\"Madrid\")"
+      },
+      {
+        "description": "Debe declarar la variable $poblacion con 3000000",
+        "validateCode": "(code, output) => code.includes(\"$poblacion\") && code.includes(\"3000000\")"
+      },
+      {
+        "description": "Debe imprimir 'Madrid'",
+        "validateCode": "(code, output) => output.trim() === \"Madrid\""
+      }
+    ]
+  },
+  {
+    "id": "m2_tipos_datos",
+    "level": 2,
+    "levelTitle": "Nivel 2: Variables y Datos",
+    "title": "2. Tipos de Datos",
+    "localPath": "Herd/phpcamp/m2_02_tipos.php",
+    "instructions": "### Tipos de Datos en PHP\n\nPHP es un lenguaje de **tipado dinámico**, lo que significa que no necesitas decirle explícitamente qué tipo de dato guarda una variable; el lenguaje lo deduce automáticamente.\n\nLos cuatro tipos de datos más comunes son:\n1. **String (Cadena de texto):** Texto entre comillas dobles o simples. Ej: `\"Ana\"` o `'Hola'`.\n2. **Integer (Entero):** Números sin decimales. Ej: `28` o `-5`.\n3. **Float / Double (Decimal):** Números con punto decimal. Ej: `19.99`.\n4. **Boolean (Booleano):** Solo puede ser `true` (verdadero) o `false` (falso).\n\n---\n\n#### 🚀 Instrucciones:\n1. Declara una variable llamada `$nombre` y asígnale un texto (String) con el valor `\"Ana\"`.\n2. Declara una variable llamada `$edad` y asígnale un entero (Integer) con el valor `28`.\n3. Declara una variable llamada `$precio` y asígnale un decimal (Float) con el valor `19.99`.\n4. Declara una variable llamada `$activo` y asígnale un booleano (Boolean) con el valor `true`.\n5. Finalmente, usa `echo` para imprimir el valor de la variable `$edad`.",
+    "initialCode": "<?php\n// Declara las variables $nombre, $edad, $precio y $activo con los valores indicados\n\n\n// Imprime la variable $edad\n\n",
+    "tests": [
+      {
+        "description": "Debe declarar la variable $nombre como 'Ana'",
+        "validateCode": "(code, output) => code.includes(\"$nombre\") && code.includes(\"Ana\")"
+      },
+      {
+        "description": "Debe declarar la variable $edad con valor 28",
+        "validateCode": "(code, output) => code.includes(\"$edad\") && /\\$edad\\s*=\\s*28/.test(code)"
+      },
+      {
+        "description": "Debe declarar la variable $precio con valor 19.99",
+        "validateCode": "(code, output) => code.includes(\"$precio\") && code.includes(\"19.99\")"
+      },
+      {
+        "description": "Debe declarar la variable $activo con valor true",
+        "validateCode": "(code, output) => code.includes(\"$activo\") && code.includes(\"true\")"
+      },
+      {
+        "description": "Debe imprimir el número 28",
+        "validateCode": "(code, output) => output.trim() === \"28\""
+      }
+    ]
+  },
+  {
+    "id": "m2_concatenacion",
+    "level": 2,
+    "levelTitle": "Nivel 2: Variables y Datos",
+    "title": "3. Concatenación de Textos",
+    "localPath": "Herd/phpcamp/m2_03_concatenar.php",
+    "instructions": "### Concatenación: Uniendo Textos\n\n\"Concatenar\" es la palabra técnica para unir dos o más cadenas de texto.\n\nEn PHP, usamos el **operador punto (`.`)** para unir textos o variables.\n\n```php\n$nombre = \"Juan\";\necho \"Hola \" . $nombre; // Imprime \"Hola Juan\"\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Declara una variable `$nombre` con el valor `\"Sofía\"`.\n2. Declara una variable `$curso` con el valor `\"PHP\"`.\n3. Concatenando ambas variables y un texto en medio, usa `echo` para imprimir exactamente:\n   `Sofía estudia PHP`",
+    "initialCode": "<?php\n$nombre = \"Sofía\";\n$curso = \"PHP\";\n\n// Usa el operador punto (.) para imprimir \"Sofía estudia PHP\"\n\n",
+    "tests": [
+      {
+        "description": "Debe utilizar el operador punto (.) para concatenar",
+        "validateCode": "(code, output) => code.includes(\".\")"
+      },
+      {
+        "description": "Debe imprimir exactamente 'Sofía estudia PHP'",
+        "validateCode": "(code, output) => output.trim() === \"Sofía estudia PHP\""
+      }
+    ]
+  },
+  {
+    "id": "m2_operaciones",
+    "level": 2,
+    "levelTitle": "Nivel 2: Variables y Datos",
+    "title": "4. Operaciones Aritméticas",
+    "localPath": "Herd/phpcamp/m2_04_aritmetica.php",
+    "instructions": "### Operaciones Matemáticas\n\nPHP permite realizar cálculos matemáticos directamente usando los operadores estándar:\n- Suma: `+`\n- Resta: `-`\n- Multiplicación: `*`\n- División: `/`\n\nPuedes hacer operaciones entre números directos o entre variables que guarden números.\n\n```php\n$a = 10;\n$b = 5;\n$resultado = $a + $b; // Guarda 15\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Crea una variable llamada `$productoA` con el valor `50`.\n2. Crea una variable llamada `$productoB` con el valor `30`.\n3. Crea una variable llamada `$total` que sume el valor de `$productoA` y `$productoB`.\n4. Imprime el valor de la variable `$total` usando `echo`.",
+    "initialCode": "<?php\n// Declara las variables y calcula la suma de $productoA y $productoB\n\n\n// Imprime la variable $total\n\n",
+    "tests": [
+      {
+        "description": "Debe tener las variables $productoA y $productoB",
+        "validateCode": "(code, output) => code.includes(\"$productoA\") && code.includes(\"$productoB\")"
+      },
+      {
+        "description": "Debe calcular la suma en $total",
+        "validateCode": "(code, output) => code.includes(\"$total\") && code.includes(\"+\")"
+      },
+      {
+        "description": "Debe imprimir el total (80)",
+        "validateCode": "(code, output) => output.trim() === \"80\""
+      }
+    ]
+  },
+  {
+    "id": "m2_constantes",
+    "level": 2,
+    "levelTitle": "Nivel 2: Variables y Datos",
+    "title": "5. Definición de Constantes",
+    "localPath": "Herd/phpcamp/m2_05_constantes.php",
+    "instructions": "### Constantes: Valores Inmutables\n\nA diferencia de las variables, una **constante** es un contenedor de información cuyo valor **nunca** puede cambiar durante la ejecución del programa.\n\nEn PHP, las constantes se definen usando la función `define()`. Por convención, sus nombres se escriben siempre en **MAYÚSCULAS** y, muy importante: **¡las constantes NO llevan el símbolo de dólar (`$`)!**\n\n```php\ndefine(\"PI\", 3.1416);\necho PI; // Imprime 3.1416\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Define una constante llamada `CURSO` con el valor de texto `\"PHP\"` usando la función `define()`.\n2. Imprime el valor de la constante `CURSO` usando `echo`. Recuerda que las constantes se llaman por su nombre directo, sin poner el signo `$`.",
+    "initialCode": "<?php\n// Define la constante CURSO\n\n\n// Imprime la constante CURSO\n\n",
+    "tests": [
+      {
+        "description": "Debe definir la constante CURSO con define()",
+        "validateCode": "(code, output) => /define\\s*\\(\\s*['\"]CURSO['\"]\\s*,\\s*['\"]PHP['\"]\\s*\\)/.test(code)"
+      },
+      {
+        "description": "Debe imprimir 'PHP'",
+        "validateCode": "(code, output) => output.trim() === \"PHP\""
+      }
+    ]
+  },
+  {
+    "id": "m3_condicional_if",
+    "level": 3,
+    "levelTitle": "Nivel 3: Lógica y Toma de Decisiones",
+    "title": "1. Condicional IF básico",
+    "localPath": "Herd/phpcamp/m3_01_if.php",
+    "instructions": "### Condicional IF: Tomando Decisiones Simples\n\nLos programas necesitan tomar decisiones basadas en ciertas condiciones. La estructura más simple es el **IF** (\"si ocurre esto...\").\n\nSi la condición que está dentro de los paréntesis es **verdadera**, se ejecutará el código entre las llaves `{ }`. Si es falsa, PHP ignorará ese bloque por completo.\n\n```php\n$llueve = true;\n\nif ($llueve) {\n    echo \"Lleva paraguas\";\n}\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Crea una variable llamada `$edad` con el valor `20`.\n2. Escribe una condición `if` que verifique si `$edad` es mayor o igual a (`>=`) 18.\n3. Si la condición se cumple, imprime el texto `\"Eres mayor de edad\"` usando `echo`.",
+    "initialCode": "<?php\n// Escribe tu condicional if aquí\n\n",
+    "tests": [
+      {
+        "description": "Debe declarar la variable $edad con 20",
+        "validateCode": "(code, output) => code.includes(\"$edad\") && code.includes(\"20\")"
+      },
+      {
+        "description": "Debe contener una estructura if",
+        "validateCode": "(code, output) => code.includes(\"if\")"
+      },
+      {
+        "description": "Debe imprimir 'Eres mayor de edad'",
+        "validateCode": "(code, output) => output.trim() === \"Eres mayor de edad\""
+      }
+    ]
+  },
+  {
+    "id": "m3_if_else",
+    "level": 3,
+    "levelTitle": "Nivel 3: Lógica y Toma de Decisiones",
+    "title": "2. Estructura IF / ELSE",
+    "localPath": "Herd/phpcamp/m3_02_ifelse.php",
+    "instructions": "### Estructura IF / ELSE: El camino alternativo\n\nA menudo, si una condición no se cumple (es falsa), queremos que el programa tome un camino alternativo. Para esto usamos la palabra clave `else` (\"de lo contrario\").\n\n```php\n$edad = 15;\n\nif ($edad >= 18) {\n    echo \"Mayor de edad\";\n} else {\n    echo \"Menor de edad\";\n}\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Tienes una variable `$puntos` pre-declarada con un valor de `85`.\n2. Escribe una estructura `if / else` que verifique si `$puntos` es mayor o igual a `60`.\n3. Si es verdadero, imprime `\"Aprobado\"`.\n4. Si es falso (en el bloque `else`), imprime `\"Reprobado\"`.",
+    "initialCode": "<?php\n$puntos = 85;\n\n// Escribe tu estructura if / else debajo\n\n",
+    "tests": [
+      {
+        "description": "Debe contener una estructura if y un else",
+        "validateCode": "(code, output) => code.includes(\"if\") && code.includes(\"else\")"
+      },
+      {
+        "description": "Debe imprimir 'Aprobado'",
+        "validateCode": "(code, output) => output.trim() === \"Aprobado\""
+      }
+    ]
+  },
+  {
+    "id": "m3_elseif",
+    "level": 3,
+    "levelTitle": "Nivel 3: Lógica y Toma de Decisiones",
+    "title": "3. Múltiples condiciones (ELSEIF)",
+    "localPath": "Herd/phpcamp/m3_03_elseif.php",
+    "instructions": "### Estructura ELSEIF: Evaluando Múltiples Caminos\n\n¿Qué pasa si tienes más de dos opciones? Para evaluar múltiples condiciones en orden, usamos `elseif`.\n\nPHP revisará cada condición de arriba a abajo. Tan pronto como encuentre una verdadera, ejecutará su código e ignorará el resto.\n\n```php\n$temperatura = 20;\n\nif ($temperatura > 30) {\n    echo \"Hace calor\";\n} elseif ($temperatura >= 15) {\n    echo \"Clima templado\";\n} else {\n    echo \"Hace frío\";\n}\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Crea una variable llamada `$nota` con el valor `7.5`.\n2. Crea una estructura condicional que evalúe:\n   - Si `$nota` es mayor o igual a `9`, imprime `\"Sobresaliente\"`.\n   - Si `$nota` es mayor o igual a `7` (pero menor que 9), imprime `\"Notable\"`.\n   - De lo contrario (cualquier nota menor a 7), imprime `\"Aprobado raspado o Reprobado\"`.",
+    "initialCode": "<?php\n// Declara la variable $nota y escribe tu if/elseif/else\n\n",
+    "tests": [
+      {
+        "description": "Debe declarar la variable $nota con valor 7.5",
+        "validateCode": "(code, output) => code.includes(\"$nota\") && code.includes(\"7.5\")"
+      },
+      {
+        "description": "Debe usar elseif en la lógica",
+        "validateCode": "(code, output) => code.includes(\"elseif\")"
+      },
+      {
+        "description": "Debe imprimir 'Notable'",
+        "validateCode": "(code, output) => output.trim() === \"Notable\""
+      }
+    ]
+  },
+  {
+    "id": "m3_operadores_logicos",
+    "level": 3,
+    "levelTitle": "Nivel 3: Lógica y Toma de Decisiones",
+    "title": "4. Operadores Lógicos",
+    "localPath": "Herd/phpcamp/m3_04_logicos.php",
+    "instructions": "### Operadores Lógicos: Combinando Condiciones\n\nA veces necesitas validar más de una condición al mismo tiempo. Para esto usamos los operadores lógicos:\n\n- **AND (`&&`):** Ambas condiciones deben ser verdaderas.\n- **OR (`||`):** Al menos una de las dos condiciones debe ser verdadera.\n- **NOT (`!`):** Invierte el valor booleano (verdadero pasa a falso y viceversa).\n\n```php\n$tieneEdad = true;\n$tieneEntrada = true;\n\nif ($tieneEdad && $tieneEntrada) {\n    echo \"Puede ingresar\";\n}\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Declara la variable `$edad` con el valor `20`.\n2. Declara la variable `$tieneEntrada` con el valor booleano `true`.\n3. Escribe un condicional que verifique si `$edad` es mayor o igual a `18` **Y** `$tieneEntrada` es verdadero.\n4. Si ambas condiciones son verdaderas, imprime `\"Acceso permitido\"`.\n5. Si no se cumple alguna, imprime `\"Acceso denegado\"`.",
+    "initialCode": "<?php\n// Declara las variables $edad y $tieneEntrada\n\n\n// Escribe el condicional usando el operador lógico &&\n\n",
+    "tests": [
+      {
+        "description": "Debe declarar la variable $edad con 20 y $tieneEntrada con true",
+        "validateCode": "(code, output) => code.includes(\"$edad\") && code.includes(\"20\") && code.includes(\"$tieneEntrada\") && code.includes(\"true\")"
+      },
+      {
+        "description": "Debe usar el operador lógico &&",
+        "validateCode": "(code, output) => code.includes(\"&&\")"
+      },
+      {
+        "description": "Debe imprimir 'Acceso permitido'",
+        "validateCode": "(code, output) => output.trim() === \"Acceso permitido\""
+      }
+    ]
+  },
+  {
+    "id": "m4_arrays_basicos",
+    "level": 4,
+    "levelTitle": "Nivel 4: Bucles y Arrays",
+    "title": "1. Creando Listas (Arrays Indexados)",
+    "localPath": "Herd/phpcamp/m4_01_arrays.php",
+    "instructions": "### Arrays Indexados: Listas de Elementos\n\nA menudo necesitas guardar una colección de cosas bajo un solo nombre, en lugar de declarar una variable diferente para cada elemento. En PHP usamos **Arrays** para eso.\n\nLos **arrays indexados** asocian cada elemento a un número o posición (índice), el cual **siempre comienza a contar desde 0**.\n\n```php\n$frutas = [\"Manzana\", \"Pera\", \"Plátano\"];\necho $frutas[0]; // Imprime \"Manzana\"\necho $frutas[1]; // Imprime \"Pera\"\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Crea un array llamado `$colores` que contenga tres textos: `\"Rojo\"`, `\"Verde\"` y `\"Azul\"`.\n2. Imprime el **segundo** elemento de la lista (recuerda que el índice del segundo elemento es `1`).",
+    "initialCode": "<?php\n// Crea el array $colores\n\n\n// Imprime el segundo color\n\n",
+    "tests": [
+      {
+        "description": "Debe declarar la variable $colores como array",
+        "validateCode": "(code, output) => code.includes(\"$colores\") && (code.includes(\"[\") || code.includes(\"array(\"))"
+      },
+      {
+        "description": "Debe imprimir 'Verde'",
+        "validateCode": "(code, output) => output.trim() === \"Verde\""
+      }
+    ]
+  },
+  {
+    "id": "m4_arrays_asociativos",
+    "level": 4,
+    "levelTitle": "Nivel 4: Bucles y Arrays",
+    "title": "2. Arrays Asociativos",
+    "localPath": "Herd/phpcamp/m4_02_asociativos.php",
+    "instructions": "### Arrays Asociativos: Claves Personalizadas\n\nEn lugar de usar números (0, 1, 2...) como índices, los **arrays asociativos** te permiten usar nombres o claves personalizadas de tipo texto para identificar a cada elemento.\n\nUsamos el operador flecha de asociación `=>` para conectar una clave con su valor.\n\n```php\n$usuario = [\n    \"nombre\" => \"Sofía\",\n    \"rol\" => \"Estudiante\"\n];\n\necho $usuario[\"nombre\"]; // Imprime \"Sofía\"\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Crea un array asociativo llamado `$usuario` con las siguientes claves y valores:\n   - `\"nombre\"` con el valor `\"Juan\"`\n   - `\"edad\"` con el valor `25`\n2. Imprime el valor asociado a la clave `\"nombre\"` usando la sintaxis de corchetes con comillas.",
+    "initialCode": "<?php\n// Crea el array asociativo $usuario\n\n\n// Imprime el valor de la clave 'nombre'\n\n",
+    "tests": [
+      {
+        "description": "Debe declarar un array asociativo con =>",
+        "validateCode": "(code, output) => code.includes(\"=>\") && code.includes(\"usuario\")"
+      },
+      {
+        "description": "Debe imprimir 'Juan'",
+        "validateCode": "(code, output) => output.trim() === \"Juan\""
+      }
+    ]
+  },
+  {
+    "id": "m4_bucle_for",
+    "level": 4,
+    "levelTitle": "Nivel 4: Bucles y Arrays",
+    "title": "3. El Bucle FOR",
+    "localPath": "Herd/phpcamp/m4_03_for.php",
+    "instructions": "### El Bucle FOR: Repeticiones Controladas\n\nUn **bucle** te permite ejecutar un bloque de código repetidas veces.\n\nEl bucle `for` se compone de tres partes dentro del paréntesis:\n1. **Inicialización:** Se declara una variable contador (ej. `$i = 1`).\n2. **Condición:** El bucle continuará mientras esta condición sea verdadera (ej. `$i <= 5`).\n3. **Incremento/Paso:** Cómo cambia el contador al final de cada vuelta (ej. `$i++` aumenta en 1).\n\n```php\nfor ($i = 1; $i <= 3; $i++) {\n    echo $i; // Imprime 123\n}\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Escribe un bucle `for` que comience con `$i = 1`.\n2. La condición debe ser que `$i` sea menor o igual a `5` (`$i <= 5`).\n3. En cada iteración, incrementa `$i` en 1.\n4. Dentro del bucle, usa `echo` para imprimir el valor de `$i` directamente (sin espacios ni saltos de línea).",
+    "initialCode": "<?php\n// Escribe tu bucle for aquí\n\n",
+    "tests": [
+      {
+        "description": "Debe usar la palabra clave for",
+        "validateCode": "(code, output) => code.includes(\"for\")"
+      },
+      {
+        "description": "Debe imprimir exactamente '12345'",
+        "validateCode": "(code, output) => output.trim() === \"12345\""
+      }
+    ]
+  },
+  {
+    "id": "m4_bucle_foreach",
+    "level": 4,
+    "levelTitle": "Nivel 4: Bucles y Arrays",
+    "title": "4. Recorriendo Arrays con FOREACH",
+    "localPath": "Herd/phpcamp/m4_04_foreach.php",
+    "instructions": "### Bucle FOREACH: Especial para Arrays\n\nCuando trabajamos con arrays, la forma más cómoda y limpia de recorrerlos es mediante el bucle **FOREACH**.\n\nEste bucle toma automáticamente cada elemento de la lista y lo asigna a una variable temporal en cada vuelta.\n\n```php\n$nombres = [\"Ana\", \"Pedro\"];\n\nforeach ($nombres as $nombre) {\n    echo $nombre; // Imprime Ana, luego Pedro\n}\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Tienes un array `$frutas` pre-declarado.\n2. Escribe un bucle `foreach` para recorrer el array `$frutas`.\n3. Dentro del bucle, usa `echo` para imprimir cada fruta seguida de un espacio en blanco `\" \"`.",
+    "initialCode": "<?php\n$frutas = [\"Manzana\", \"Plátano\", \"Naranja\"];\n\n// Recorre $frutas e imprime cada fruta seguida de un espacio\n\n",
+    "tests": [
+      {
+        "description": "Debe usar la estructura foreach",
+        "validateCode": "(code, output) => code.includes(\"foreach\") && code.includes(\"as\")"
+      },
+      {
+        "description": "Debe imprimir todas las frutas separadas por espacios",
+        "validateCode": "(code, output) => {\r\n          const out = output.trim();\r\n          return out.includes(\"Manzana\") && out.includes(\"Plátano\") && out.includes(\"Naranja\");\r\n        }"
+      }
+    ]
+  },
+  {
+    "id": "m4_foreach_asociativo",
+    "level": 4,
+    "levelTitle": "Nivel 4: Bucles y Arrays",
+    "title": "5. Iterando Claves y Valores",
+    "localPath": "Herd/phpcamp/m4_05_foreach_asoc.php",
+    "instructions": "### Foreach Asociativo: Obteniendo la Clave\n\nCon los arrays asociativos, a menudo quieres tener acceso tanto a la **clave** (el nombre de la propiedad) como a su **valor** correspondiente.\n\nPara eso usamos la sintaxis extendida de `foreach ($array as $clave => $valor)`.\n\n```php\n$precios = [\"Café\" => 2, \"Té\" => 1.5];\n\nforeach ($precios as $producto => $costo) {\n    echo $producto . \" cuesta \" . $costo;\n}\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Tienes un array asociativo llamado `$capitales`.\n2. Usa un bucle `foreach` que extraiga el país como clave (`$pais`) y la ciudad como valor (`$ciudad`).\n3. Dentro del bucle, imprime exactamente la frase:\n   `La capital de [pais] es [ciudad]. ` (con un espacio al final de cada frase).",
+    "initialCode": "<?php\n$capitales = [\n    \"España\" => \"Madrid\",\n    \"Francia\" => \"París\"\n];\n\n// Recorre $capitales imprimiendo la frase indicada\n\n",
+    "tests": [
+      {
+        "description": "Debe usar foreach con la sintaxis de asociación =>",
+        "validateCode": "(code, output) => /foreach\\s*\\(\\s*\\$capitales\\s+as\\s+\\$[a-zA-Z0-9_]+\\s*=>\\s*\\$[a-zA-Z0-9_]+\\s*\\)/.test(code)"
+      },
+      {
+        "description": "Debe imprimir correctamente la frase completa para España y Francia",
+        "validateCode": "(code, output) => output.includes(\"La capital de España es Madrid.\") && output.includes(\"La capital de Francia es París.\")"
+      }
+    ]
+  },
+  {
+    "id": "m5_funciones_basicas",
+    "level": 5,
+    "levelTitle": "Nivel 5: Modularidad y Funciones",
+    "title": "1. Creando tu primera Función",
+    "localPath": "Herd/phpcamp/m5_01_funciones.php",
+    "instructions": "### Funciones: Código Reutilizable\n\nPara no repetir el mismo código muchas veces, podemos agruparlo en un bloque lógico llamado **función** y llamarlo cuando lo necesitemos.\n\n```php\nfunction saludar() {\n    echo \"¡Hola!\";\n}\n\nsaludar(); // Llama a la función y ejecuta su interior\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Declara una función llamada `despedirse`.\n2. Dentro de la función, usa `echo` para imprimir el texto `\"Adiós\"`.\n3. Llama a la función al final del archivo para que se ejecute.",
+    "initialCode": "<?php\n// Crea la función despedirse\n\n\n// Llama a la función\n\n",
+    "tests": [
+      {
+        "description": "Debe definir la función 'despedirse'",
+        "validateCode": "(code, output) => code.includes(\"function despedirse\") || code.includes(\"function despedirse()\")"
+      },
+      {
+        "description": "Debe llamar a la función e imprimir 'Adiós'",
+        "validateCode": "(code, output) => output.trim() === \"Adiós\""
+      }
+    ]
+  },
+  {
+    "id": "m5_funciones_parametros",
+    "level": 5,
+    "levelTitle": "Nivel 5: Modularidad y Funciones",
+    "title": "2. Funciones con Parámetros",
+    "localPath": "Herd/phpcamp/m5_02_parametros.php",
+    "instructions": "### Parámetros: Personalizando la función\n\nLas funciones se vuelven realmente útiles cuando les pasamos información para que actúen sobre ella. Esta información se recibe a través de **parámetros** (variables locales que solo existen dentro de la función).\n\n```php\nfunction saludarUsuario($nombre) {\n    echo \"Hola \" . $nombre;\n}\n\nsaludarUsuario(\"Sofía\"); // Imprime \"Hola Sofía\"\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Declara una función llamada `saludarUsuario` que reciba un parámetro llamado `$nombre`.\n2. Dentro de la función, usa `echo` para imprimir el texto `\"Hola \"` concatenado con la variable `$nombre`. (Ej: `Hola Pedro`).\n3. Llama a la función al final, pasándole el texto `\"Pedro\"` como argumento.",
+    "initialCode": "<?php\n// Crea la función saludarUsuario\n\n\n// Llama a la función con el valor \"Pedro\"\n\n",
+    "tests": [
+      {
+        "description": "Debe definir la función saludarUsuario con un parámetro",
+        "validateCode": "(code, output) => /function\\s+saludarUsuario\\s*\\(\\s*\\$[a-zA-Z0-9_]+\\s*\\)/.test(code)"
+      },
+      {
+        "description": "Debe imprimir 'Hola Pedro'",
+        "validateCode": "(code, output) => output.trim() === \"Hola Pedro\""
+      }
+    ]
+  },
+  {
+    "id": "m5_funciones_retorno",
+    "level": 5,
+    "levelTitle": "Nivel 5: Modularidad y Funciones",
+    "title": "3. Retorno de Valores (RETURN)",
+    "localPath": "Herd/phpcamp/m5_03_retorno.php",
+    "instructions": "### La sentencia RETURN: Devolviendo resultados\n\nMuchas funciones no muestran texto directamente en pantalla, sino que realizan un cálculo y **devuelven** el resultado para que el resto del programa pueda usarlo. Para esto se usa la instrucción `return`.\n\n*Nota: Una vez que se ejecuta un `return`, la función termina inmediatamente.*\n\n```php\nfunction sumar($a, $b) {\n    return $a + $b;\n}\n\n$resultado = sumar(5, 3); // $resultado ahora vale 8\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Declara una función llamada `duplicar` que tome un parámetro llamado `$numero`.\n2. Dentro de la función, usa `return` para devolver el doble de `$numero` (`$numero * 2`). ¡No uses `echo` dentro de la función!\n3. Fuera de la función, declara una variable llamada `$resultado` y asígnale el valor devuelto al llamar a `duplicar(5)`.\n4. Imprime la variable `$resultado` usando `echo`.",
+    "initialCode": "<?php\n// Crea la función duplicar\n\n\n// Llama a la función con el valor 5, guárdalo e imprímelo\n\n",
+    "tests": [
+      {
+        "description": "Debe usar return dentro de la función duplicar",
+        "validateCode": "(code, output) => code.includes(\"return\") && code.includes(\"duplicar\")"
+      },
+      {
+        "description": "Debe imprimir el resultado (10)",
+        "validateCode": "(code, output) => output.trim() === \"10\""
+      }
+    ]
+  },
+  {
+    "id": "m5_funciones_tipado",
+    "level": 5,
+    "levelTitle": "Nivel 5: Modularidad y Funciones",
+    "title": "4. Tipado estricto (Type Hinting)",
+    "localPath": "Herd/phpcamp/m5_04_tipado.php",
+    "instructions": "### Tipado de Parámetros y Retorno en PHP 8\n\nEn PHP moderno, es una excelente práctica declarar explícitamente qué tipo de datos espera recibir una función y qué tipo de datos va a devolver. Esto hace que el código sea mucho más seguro y robusto.\n\n```php\nfunction multiplicar(int $a, int $b): int {\n    return $a * $b;\n}\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Declara una función llamada `sumarEnteros` que reciba dos parámetros con tipado de entero: `int $a` e `int $b`.\n2. Declara que la función debe retornar un valor entero agregando `: int` justo antes de la llave de apertura.\n3. Dentro, devuelve la suma de ambos números.\n4. Llama a la función pasando los números `4` y `6`, e imprime el resultado usando `echo`.",
+    "initialCode": "<?php\n// Declara la función sumarEnteros con tipado de parámetros y retorno\n\n\n// Llama e imprime el resultado de sumarEnteros(4, 6)\n\n",
+    "tests": [
+      {
+        "description": "Debe definir sumarEnteros con parámetros de tipo int",
+        "validateCode": "(code, output) => /int\\s+\\$a/.test(code) && /int\\s+\\$b/.test(code)"
+      },
+      {
+        "description": "Debe declarar el tipo de retorno ': int'",
+        "validateCode": "(code, output) => /:\\s*int/.test(code)"
+      },
+      {
+        "description": "Debe imprimir el resultado correcto (10)",
+        "validateCode": "(code, output) => output.trim() === \"10\""
+      }
+    ]
+  },
+  {
+    "id": "m6_formularios_get",
+    "level": 6,
+    "levelTitle": "Nivel 6: Interacción con el Usuario",
+    "title": "1. Recibiendo datos de la URL ($_GET)",
+    "localPath": "Herd/phpcamp/m6_01_get.php",
+    "instructions": "### Recibiendo Datos: La superglobal `$_GET`\n\nCuando el usuario navega a tu página o envía un formulario usando el método **GET**, los datos viajan directamente visibles en la URL (ej: `index.php?usuario=Pedro`).\n\nPHP captura automáticamente esos datos y los guarda en un array asociativo especial predefinido llamado `$_GET`.\n\n```php\n// Si la URL es: index.php?usuario=Pedro\necho $_GET[\"usuario\"]; // Imprimirá \"Pedro\"\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Imagina que en la URL de tu página web nos están pasando el parámetro `?usuario=Pedro`.\n2. Para que la prueba funcione, hemos pre-asignado ese valor en la variable superglobal `$_GET[\"usuario\"]`.\n3. Usa la instrucción `echo` para imprimir el valor contenido en `$_GET[\"usuario\"]`.",
+    "initialCode": "<?php\n$_GET[\"usuario\"] = \"Pedro\"; // (Simulamos la URL para la prueba)\n\n// Imprime el valor de la variable usuario en $_GET\n\n",
+    "tests": [
+      {
+        "description": "Debe usar la superglobal $_GET['usuario']",
+        "validateCode": "(code, output) => code.includes(\"$_GET\") && code.includes(\"usuario\")"
+      },
+      {
+        "description": "Debe imprimir 'Pedro'",
+        "validateCode": "(code, output) => output.trim() === \"Pedro\""
+      }
+    ]
+  },
+  {
+    "id": "m6_formularios_post",
+    "level": 6,
+    "levelTitle": "Nivel 6: Interacción con el Usuario",
+    "title": "2. Recibiendo datos de Formularios ($_POST)",
+    "localPath": "Herd/phpcamp/m6_02_post.php",
+    "instructions": "### Enviando información oculta: `$_POST`\n\nA diferencia de GET, cuando enviamos información sensible (como contraseñas, correos o formularios de registro), no queremos que los datos se muestren en la barra de direcciones de la URL.\n\nPara esto usamos el método **POST**. PHP almacena de forma automática estos valores dentro del array asociativo superglobal `$_POST`.\n\n```php\n// Captura el valor del input con name=\"email\" enviado por POST\necho $_POST[\"email\"];\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Para simular el envío de un formulario de registro, hemos pre-poblado `$_POST[\"email\"]` con `\"correo@ejemplo.com\"`.\n2. Usa `echo` para imprimir el valor que se ha recibido en `$_POST[\"email\"]`.",
+    "initialCode": "<?php\n$_POST[\"email\"] = \"correo@ejemplo.com\"; // (Simulamos el envío del formulario)\n\n// Imprime el valor recibido en $_POST\n\n",
+    "tests": [
+      {
+        "description": "Debe usar la superglobal $_POST['email']",
+        "validateCode": "(code, output) => code.includes(\"$_POST\") && code.includes(\"email\")"
+      },
+      {
+        "description": "Debe imprimir 'correo@ejemplo.com'",
+        "validateCode": "(code, output) => output.trim() === \"correo@ejemplo.com\""
+      }
+    ]
+  },
+  {
+    "id": "m6_seguridad_xss",
+    "level": 6,
+    "levelTitle": "Nivel 6: Interacción con el Usuario",
+    "title": "3. Prevención de Ataques XSS",
+    "localPath": "Herd/phpcamp/m6_03_xss.php",
+    "instructions": "### Seguridad Web: Saneando Entradas con htmlspecialchars()\n\n**Regla de oro de la seguridad web:** ¡Nunca confíes en los datos que introduce el usuario!\n\nSi imprimes directamente en pantalla lo que el usuario envía por un formulario, un atacante podría introducir código HTML o JavaScript malicioso (ataque conocido como **XSS - Cross-Site Scripting**).\n\nPara protegernos, PHP provee la función `htmlspecialchars()`, la cual desactiva las etiquetas HTML convirtiendo caracteres especiales como `<` y `>` en texto seguro que el navegador no ejecutará.\n\n```php\n$entradaSegura = htmlspecialchars($entrada, ENT_QUOTES, 'UTF-8');\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Un usuario malintencionado ha enviado el texto `\"<script>alert('hack');</script>\"` como comentario en una URL. Lo hemos simulado guardándolo en `$_GET[\"comentario\"]`.\n2. Pasa `$_GET[\"comentario\"]` por la función `htmlspecialchars()` para sanear la cadena.\n3. Imprime el resultado saneado usando `echo`.",
+    "initialCode": "<?php\n$_GET[\"comentario\"] = \"<script>alert('hack');</script>\"; // Entrada maliciosa\n\n// Sanea e imprime la entrada de forma segura\n\n",
+    "tests": [
+      {
+        "description": "Debe utilizar la función htmlspecialchars()",
+        "validateCode": "(code, output) => code.includes(\"htmlspecialchars\")"
+      },
+      {
+        "description": "Debe imprimir el texto saneado de forma segura",
+        "validateCode": "(code, output) => output.trim() === \"&lt;script&gt;alert(&#039;hack&#039;);&lt;/script&gt;\""
+      }
+    ]
+  },
+  {
+    "id": "m7_sesiones_basicas",
+    "level": 7,
+    "levelTitle": "Nivel 7: Estado y Persistencia",
+    "title": "1. Iniciando Sesiones",
+    "localPath": "Herd/phpcamp/m7_01_sesiones.php",
+    "instructions": "### Sesiones: Recordando al Usuario\n\nHTTP es un protocolo \"sin estado\", lo que significa que el servidor olvida quién eres en cuanto cambias de página. Para solucionar esto y mantener al usuario logueado, PHP utiliza **Sesiones**.\n\nAntes de usar sesiones, **siempre** debes encender el motor de sesiones en la primera línea usando la función `session_start();`.\n\nUna vez iniciada, puedes almacenar información en el array global `$_SESSION` que estará disponible en cualquier otra página del sitio.\n\n```php\nsession_start();\n$_SESSION[\"rol\"] = \"Administrador\";\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Llama a la función `session_start();` en la primera línea.\n2. Asigna a la variable superglobal `$_SESSION[\"logeado\"]` el valor booleano `true`.\n3. Haz un `echo` de `\"Sesión iniciada\"` al final.",
+    "initialCode": "<?php\n// 1. Inicia la sesión\n\n\n// 2. Guarda true en $_SESSION['logeado']\n\n\n// 3. Imprime \"Sesión iniciada\"\n\n",
+    "tests": [
+      {
+        "description": "Debe iniciar la sesión con session_start()",
+        "validateCode": "(code, output) => code.includes(\"session_start()\") || code.includes(\"session_start();\")"
+      },
+      {
+        "description": "Debe guardar true en $_SESSION['logeado']",
+        "validateCode": "(code, output) => code.includes(\"$_SESSION\") && code.includes(\"logeado\") && code.includes(\"true\")"
+      },
+      {
+        "description": "Debe imprimir 'Sesión iniciada'",
+        "validateCode": "(code, output) => output.trim() === \"Sesión iniciada\""
+      }
+    ]
+  },
+  {
+    "id": "m7_sesiones_destruir",
+    "level": 7,
+    "levelTitle": "Nivel 7: Estado y Persistencia",
+    "title": "2. Cierre de Sesión y Destrucción",
+    "localPath": "Herd/phpcamp/m7_02_logout.php",
+    "instructions": "### Cerrando Sesión: unset() y session_destroy()\n\nCuando un usuario hace clic en \"Cerrar Sesión\", debemos limpiar los datos guardados en la memoria del servidor para evitar accesos no autorizados.\n\nPara esto hacemos dos pasos:\n1. **Borrar variables específicas:** Usamos la instrucción `unset($_SESSION[\"clave\"]);` para eliminar un dato en particular.\n2. **Destruir la sesión por completo:** Llamamos a la función `session_destroy();` para cerrar la sesión activa del usuario.\n\n```php\nsession_start();\nunset($_SESSION[\"usuario\"]); // Elimina solo el usuario\nsession_destroy();          // Destruye toda la sesión\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Hemos simulado el inicio de sesión y guardado datos en `$_SESSION[\"usuario\"] = \"Ana\";` y `$_SESSION[\"logeado\"] = true;`.\n2. Llama a la función `session_start();`.\n3. Borra la variable específica de sesión `\"logeado\"` usando la instrucción `unset()`.\n4. Destruye la sesión completa llamando a `session_destroy();`.\n5. Imprime el mensaje `\"Sesión destruida\"` usando `echo`.",
+    "initialCode": "<?php\n$_SESSION[\"usuario\"] = \"Ana\";\n$_SESSION[\"logeado\"] = true;\n\n// 1. Inicia sesión\n\n\n// 2. Borra la clave 'logeado' con unset\n\n\n// 3. Destruye la sesión completa\n\n\n// 4. Imprime \"Sesión destruida\"\n\n",
+    "tests": [
+      {
+        "description": "Debe iniciar la sesión con session_start()",
+        "validateCode": "(code, output) => code.includes(\"session_start()\") || code.includes(\"session_start();\")"
+      },
+      {
+        "description": "Debe usar unset() para borrar 'logeado'",
+        "validateCode": "(code, output) => /unset\\s*\\(\\s*\\$_SESSION\\s*\\[\\s*['\"]logeado['\"]\\s*\\]\\s*\\)/.test(code)"
+      },
+      {
+        "description": "Debe destruir la sesión completa con session_destroy()",
+        "validateCode": "(code, output) => code.includes(\"session_destroy()\") || code.includes(\"session_destroy();\")"
+      },
+      {
+        "description": "Debe imprimir 'Sesión destruida'",
+        "validateCode": "(code, output) => output.trim() === \"Sesión destruida\""
+      }
+    ]
+  },
+  {
+    "id": "m8_pdo_basico",
+    "level": 8,
+    "levelTitle": "Nivel 8: Bases de Datos",
+    "title": "1. Conceptos de PDO",
+    "localPath": "Herd/phpcamp/m8_01_pdo.php",
+    "instructions": "### Conectando a la Base de Datos con PDO\n\nEn PHP moderno y profesional, usamos **PDO (PHP Data Objects)** para interactuar con bases de datos como MySQL, PostgreSQL o SQLite de manera uniforme.\n\nPara conectarnos, creamos un nuevo objeto de la clase `PDO` pasándole un **DSN (Data Source Name)** junto con las credenciales de la base de datos (usuario y contraseña).\n\n```php\n// Ejemplo real de conexión a MySQL\n$conexion = new PDO(\"mysql:host=localhost;dbname=mi_base_de_datos\", \"usuario\", \"password\");\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Crea una variable llamada `$conexion` simulada.\n2. Como no podemos levantar un servidor de base de datos real en el navegador de la plataforma, simplemente asígnale el texto `\"Conectado a PDO\"` a esa variable.\n3. Imprime el valor de `$conexion` usando `echo`.",
+    "initialCode": "<?php\n// Simulación de PDO\n// Asigna \"Conectado a PDO\" a la variable $conexion e imprímela\n\n",
+    "tests": [
+      {
+        "description": "Debe imprimir 'Conectado a PDO'",
+        "validateCode": "(code, output) => output.trim() === \"Conectado a PDO\""
+      }
+    ]
+  },
+  {
+    "id": "m8_consultas_preparadas",
+    "level": 8,
+    "levelTitle": "Nivel 8: Bases de Datos",
+    "title": "2. Consultas Preparadas (Prepared Statements)",
+    "localPath": "Herd/phpcamp/m8_02_preparadas.php",
+    "instructions": "### Seguridad DB: Previniendo Inyección SQL\n\n**¡Cuidado!** Concatenar variables directamente dentro de una consulta SQL (ej. `\"SELECT * FROM usuarios WHERE email = '$email'\"`) es extremadamente peligroso. Un hacker podría escribir código SQL en la entrada de texto y tomar control de toda tu base de datos (inyección SQL).\n\nPara evitar esto, usamos **Consultas Preparadas**. Primero enviamos la consulta con \"marcadores\" o marcadores de posición (`:email` o `?`), y luego le pasamos los datos reales por separado al ejecutar la consulta.\n\n```php\n// Código real usando PDO\n$stmt = $conexion->prepare(\"SELECT * FROM usuarios WHERE email = :email\");\n$stmt->execute([\"email\" => $correoUsuario]);\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Declara una variable llamada `$sql` con la consulta preparada exacta: `\"SELECT * FROM usuarios WHERE email = :email\"`.\n2. Crea un array asociativo llamado `$datos` que contenga:\n   - La clave `\"email\"` con el valor `\"sofia@ejemplo.com\"`.\n3. Imprime el mensaje: `\"Consulta preparada de forma segura\"` usando `echo`.",
+    "initialCode": "<?php\n// 1. Define la variable $sql con la consulta preparada\n\n\n// 2. Crea el array asociativo $datos con el email\n\n\n// 3. Imprime \"Consulta preparada de forma segura\"\n\n",
+    "tests": [
+      {
+        "description": "Debe declarar la consulta preparada con :email",
+        "validateCode": "(code, output) => code.includes(\"SELECT * FROM usuarios WHERE email = :email\")"
+      },
+      {
+        "description": "Debe declarar el array $datos con el email correcto",
+        "validateCode": "(code, output) => code.includes(\"$datos\") && code.includes(\"sofia@ejemplo.com\")"
+      },
+      {
+        "description": "Debe imprimir 'Consulta preparada de forma segura'",
+        "validateCode": "(code, output) => output.trim() === \"Consulta preparada de forma segura\""
+      }
+    ]
+  },
+  {
+    "id": "m9_poo_basico",
+    "level": 9,
+    "levelTitle": "Nivel 9: El Puente Hacia Laravel",
+    "title": "1. Tu Primera Clase",
+    "localPath": "Herd/phpcamp/m9_01_poo.php",
+    "instructions": "### Programación Orientada a Objetos (POO)\n\nLaravel está completamente basado en Clases y Objetos. Una **Clase** es como un molde o plano de construcción, y un **Objeto** es el producto terminado fabricado con ese molde.\n\nUtilizamos propiedades (variables dentro de la clase) para guardar información y la palabra clave `new` para instanciar (crear) un objeto.\n\n```php\nclass Coche {\n    public $color;\n}\n\n$miCoche = new Coche();\n$miCoche->color = \"Rojo\"; // Asignación con el operador flecha ->\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Crea una clase llamada `Usuario`.\n2. Añádele una propiedad pública llamada `$nombre`.\n3. Crea un objeto de esa clase llamado `$miUsuario` usando la palabra `new`.\n4. Asígnale a la propiedad `nombre` del objeto el valor `\"María\"`.\n5. Imprime el nombre del objeto usando la flecha `->` para acceder a él: `echo $miUsuario->nombre;`.",
+    "initialCode": "<?php\n// 1. Crea la clase Usuario con una propiedad pública $nombre\n\n\n// 2. Crea la instancia $miUsuario y ponle el nombre \"María\"\n\n\n// 3. Imprime la propiedad nombre del objeto\n\n",
+    "tests": [
+      {
+        "description": "Debe declarar la clase Usuario",
+        "validateCode": "(code, output) => code.includes(\"class Usuario\")"
+      },
+      {
+        "description": "Debe imprimir 'María'",
+        "validateCode": "(code, output) => output.trim() === \"María\""
+      }
+    ]
+  },
+  {
+    "id": "m9_poo_constructores",
+    "level": 9,
+    "levelTitle": "Nivel 9: El Puente Hacia Laravel",
+    "title": "2. Constructores y Métodos",
+    "localPath": "Herd/phpcamp/m9_02_constructor.php",
+    "instructions": "### Métodos y el método mágico __construct()\n\nLas funciones dentro de una clase se llaman **Métodos** y definen las acciones que puede realizar un objeto.\n\nEl **Constructor** (`__construct`) es un método especial y \"mágico\" que PHP ejecuta de forma automática en cuanto creamos un objeto con `new`. Se usa típicamente para inicializar las propiedades del objeto.\n\nPara referirnos a las propiedades de la clase desde adentro de sus propios métodos, usamos la variable especial `$this` seguida de la flecha `->`.\n\n```php\nclass Persona {\n    public $nombre;\n\n    // Constructor que recibe un nombre\n    public function __construct($n) {\n        $this->nombre = $n;\n    }\n\n    public function saludar() {\n        return \"Hola \" . $this->nombre;\n    }\n}\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Escribe la clase `Persona` exactamente como en la explicación:\n   - Con la propiedad pública `$nombre`.\n   - Con el constructor `__construct($n)` que asigne el valor a `$this->nombre`.\n   - Con el método público `saludar()` que retorne (`return`) la frase `\"Hola \"` seguida de `$this->nombre`.\n2. Crea un objeto llamado `$miPersona` pasándole el argumento `\"Sofía\"` al instanciarlo: `new Persona(\"Sofía\")`.\n3. Llama al método `saludar()` de tu objeto `$miPersona` e imprime el resultado usando `echo`.",
+    "initialCode": "<?php\n// 1. Declara la clase Persona con su constructor y método saludar\n\n\n// 2. Crea el objeto $miPersona con el nombre \"Sofía\"\n\n\n// 3. Imprime el resultado de llamar a saludar()\n\n",
+    "tests": [
+      {
+        "description": "Debe declarar la clase Persona",
+        "validateCode": "(code, output) => code.includes(\"class Persona\")"
+      },
+      {
+        "description": "Debe incluir el método mágico __construct",
+        "validateCode": "(code, output) => code.includes(\"__construct\")"
+      },
+      {
+        "description": "Debe incluir el método saludar",
+        "validateCode": "(code, output) => code.includes(\"function saludar\")"
+      },
+      {
+        "description": "Debe imprimir 'Hola Sofía'",
+        "validateCode": "(code, output) => output.trim() === \"Hola Sofía\""
+      }
+    ]
+  },
+  {
+    "id": "m9_poo_herencia",
+    "level": 9,
+    "levelTitle": "Nivel 9: El Puente Hacia Laravel",
+    "title": "3. Herencia en Clases",
+    "localPath": "Herd/phpcamp/m9_03_herencia.php",
+    "instructions": "### Herencia: Reutilizando Estructuras (extends)\n\nLa **Herencia** es un pilar de la POO. Permite que una clase (hijo) adquiera todas las propiedades y métodos de otra clase (padre).\n\nEn PHP usamos la palabra clave `extends` para indicar que heredamos de otra clase.\n\n```php\nclass Vehiculo {\n    public $marca;\n}\n\nclass Moto extends Vehiculo {\n    public function obtenerMensaje() {\n        return \"Moto marca \" . $this->marca;\n    }\n}\n```\n\n---\n\n#### 🚀 Instrucciones:\n1. Declara la clase padre `Vehiculo` con una propiedad pública `$marca`.\n2. Declara la clase hija `Moto` que herede (`extends`) de `Vehiculo`.\n3. Dentro de `Moto`, define un método público llamado `obtenerMensaje()` que retorne (`return`) el texto `\"Moto marca \"` concatenado con `$this->marca`.\n4. Crea una instancia de `Moto` llamada `$miMoto`.\n5. Asígnale a su propiedad `marca` el valor `\"Yamaha\"` (observa cómo la clase `Moto` tiene esa propiedad gracias a la herencia).\n6. Imprime en pantalla el resultado de llamar al método `obtenerMensaje()` de tu objeto `$miMoto`.",
+    "initialCode": "<?php\n// 1. Crea la clase Vehiculo\n\n\n// 2. Crea la clase Moto que hereda de Vehiculo con obtenerMensaje()\n\n\n// 3. Crea la instancia $miMoto, asigna marca \"Yamaha\" e imprime obtenerMensaje()\n\n",
+    "tests": [
+      {
+        "description": "Debe declarar la clase Vehiculo",
+        "validateCode": "(code, output) => code.includes(\"class Vehiculo\")"
+      },
+      {
+        "description": "Debe declarar que la clase Moto hereda de Vehiculo",
+        "validateCode": "(code, output) => /class\\s+Moto\\s+extends\\s+Vehiculo/i.test(code)"
+      },
+      {
+        "description": "Debe imprimir 'Moto marca Yamaha'",
+        "validateCode": "(code, output) => output.trim() === \"Moto marca Yamaha\""
+      }
+    ]
+  }
+]
